@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Agent {
     private ArrayList<Territory> territoriesOccuopied;
     private int noOfArmyUnits;
+    private int noOfUnitsAvaliable;
 
     public ArrayList<Territory> getTerritoriesOccuopied() {
         return territoriesOccuopied;
@@ -15,6 +16,17 @@ public class Agent {
 
     public void setTerritoriesOccuopied(ArrayList<Territory> territoriesOccuopied) {
         this.territoriesOccuopied = territoriesOccuopied;
+    }
+    public void addTerrirtory(Territory addedTerritory) {
+        this.territoriesOccuopied.add(addedTerritory);
+    }
+
+    public int getNoOfUnitsAvaliable() {
+        return noOfUnitsAvaliable;
+    }
+
+    public void setNoOfUnitsAvaliable(int noOfUnitsAvaliable) {
+        this.noOfUnitsAvaliable = noOfUnitsAvaliable;
     }
 
     public int getNoOfArmyUnits() {

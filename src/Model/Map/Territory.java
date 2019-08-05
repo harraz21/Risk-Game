@@ -12,6 +12,11 @@ public class Territory {
     private ArrayList<Territory> neighboringTerritories;
 
 
+    Territory(Agent Owner){
+        this.defender = Owner;
+        System.out.println("Added Territory");
+    }
+
     public void attack(ArmyUnits armyUnits)
     {
 
@@ -22,7 +27,7 @@ public class Territory {
         noOfArmies=noOfArmies+noOfArmiesAdded;
     }
 
-    public ArmyUnits removeArmies(int noOfArmiesRemoved,Territory directionTerritory)
+    public ArmyUnits removeArmies(int noOfArmiesRemoved)
     {
         if (armyUnits.getNoOfUnits()-noOfArmiesRemoved>1)
         {
