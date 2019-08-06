@@ -5,37 +5,49 @@ import Model.Agents.ArmyUnits.ArmyUnits;
 
 import java.util.ArrayList;
 
-public class Territory {
+public class Territory implements Cloneable {
     private Agent defender;
-    private int noOfArmies;
     private ArmyUnits armyUnits;
     private ArrayList<Territory> neighboringTerritories;
 
 
-    Territory(Agent Owner){
-        this.defender = Owner;
-        System.out.println("Added Territory");
+    Territory(Agent defender, ArmyUnits armyUnits) {
+        this.defender = defender;
+        this.armyUnits = armyUnits;
     }
 
-    public void attack(ArmyUnits armyUnits)
-    {
-
-    }
-    public void addSoldiers(int noOfArmiesAdded)
-    {
-        armyUnits.setNoOfUnits(armyUnits.getNoOfUnits()+noOfArmies);
-        noOfArmies=noOfArmies+noOfArmiesAdded;
-    }
-
-    public ArmyUnits removeArmies(int noOfArmiesRemoved)
-    {
-        if (armyUnits.getNoOfUnits()-noOfArmiesRemoved>1)
-        {
-            armyUnits.setNoOfUnits(armyUnits.getNoOfUnits()-noOfArmiesRemoved);
-            noOfArmies=armyUnits.getNoOfUnits();
-            return new ArmyUnits(noOfArmiesRemoved);
+    public void attack(ArmyUnits armyUnits, Agent attacker) {
+        if (armyUnits != null && attacker != defender) {
+            if (this.armyUnits != null) {
+                int remainingForces = armyUnits.getNoOfUnits() - this.armyUnits.getNoOfUnits();
+                if (remainingForces >= 0) {
+                    defender.getTerritoriesOccuopied().remove(this);
+                    defender = attacker;
+                    defender.getTerritoriesOccuopied().add(this);
+                    armyUnits.setTerritoryOccupied(this);
+                    armyUnits.setNoOfUnits(remainingForces);
+                    this.armyUnits = armyUnits;
+                }
+            } else {
+                defender = attacker;
+                defender.getTerritoriesOccuopied().add(this);
+                armyUnits.setTerritoryOccupied(this);
+                this.armyUnits=armyUnits;
+            }
         }
-        else return null;
+    }
+
+    public void addSoldiers(ArmyUnits armyUnits, Agent agent) {
+        if (armyUnits != null && agent == defender && neighboringTerritories.contains(armyUnits.getTerritoryOccupied())) {
+            this.armyUnits.setNoOfUnits(armyUnits.getNoOfUnits() + armyUnits.getNoOfUnits());
+        }
+    }
+
+    public ArmyUnits removeArmies(int noOfArmiesRemoved) {
+        if (armyUnits.getNoOfUnits() - noOfArmiesRemoved > 1) {
+            armyUnits.setNoOfUnits(armyUnits.getNoOfUnits() - noOfArmiesRemoved);
+            return new ArmyUnits(noOfArmiesRemoved);
+        } else return null;
     }
 
     public Agent getDefender() {
@@ -46,13 +58,6 @@ public class Territory {
         this.defender = defender;
     }
 
-    public int getNoOfArmies() {
-        return noOfArmies;
-    }
-
-    public void setNoOfArmies(int noOfArmies) {
-        this.noOfArmies = noOfArmies;
-    }
 
     public ArmyUnits getArmyUnits() {
         return armyUnits;
@@ -68,6 +73,17 @@ public class Territory {
 
     public void setNeighboringTerritories(ArrayList<Territory> neighboringTerritories) {
         this.neighboringTerritories = neighboringTerritories;
+    }
+
+
+    public Object clone() throws CloneNotSupportedException {
+        Territory newTerritory = new Territory(defender,armyUnits);
+        ArrayList<Territory> newNeighbours = new ArrayList<>();
+        for (Territory territory:neighboringTerritories) {
+            newNeighbours.add((Territory) territory.clone());
+        }
+        newTerritory.setNeighboringTerritories(newNeighbours);
+        return newTerritory;
     }
 
 }

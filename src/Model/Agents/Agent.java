@@ -5,10 +5,10 @@ import Model.Map.Territory;
 
 import java.util.ArrayList;
 
-public class Agent {
+public class Agent implements Cloneable {
     private ArrayList<Territory> territoriesOccuopied;
     private int noOfArmyUnits;
-    private int noOfUnitsAvaliable;
+    private int noOfUnitsAvailable;
 
     public ArrayList<Territory> getTerritoriesOccuopied() {
         return territoriesOccuopied;
@@ -22,11 +22,11 @@ public class Agent {
     }
 
     public int getNoOfUnitsAvaliable() {
-        return noOfUnitsAvaliable;
+        return noOfUnitsAvailable;
     }
 
     public void setNoOfUnitsAvaliable(int noOfUnitsAvaliable) {
-        this.noOfUnitsAvaliable = noOfUnitsAvaliable;
+        this.noOfUnitsAvailable = noOfUnitsAvaliable;
     }
 
     public int getNoOfArmyUnits() {
@@ -35,5 +35,18 @@ public class Agent {
 
     public void setNoOfArmyUnits(int noOfArmyUnits) {
         this.noOfArmyUnits = noOfArmyUnits;
+    }
+
+    public Object clone() throws  CloneNotSupportedException
+    {
+       ArrayList<Territory> newTerritories = new ArrayList<>();
+        for (Territory territory:territoriesOccuopied) {
+            newTerritories.add((Territory) territory.clone());
+        }
+        Agent newAgent= new Agent();
+        newAgent.setNoOfArmyUnits(noOfArmyUnits);
+        newAgent.setNoOfArmyUnits(noOfUnitsAvailable);
+        newAgent.setTerritoriesOccuopied(newTerritories);
+        return newAgent;
     }
 }

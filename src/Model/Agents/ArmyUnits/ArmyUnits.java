@@ -1,8 +1,10 @@
 package Model.Agents.ArmyUnits;
 
-public class ArmyUnits {
+import Model.Map.Territory;
+
+public class ArmyUnits implements Cloneable {
    private int noOfUnits;
-   private int territoryOccupied;
+   private Territory territoryOccupied;
 
     public ArmyUnits(int noOfUnits) {
         this.noOfUnits = noOfUnits;
@@ -17,11 +19,17 @@ public class ArmyUnits {
         this.noOfUnits = noOfUnits;
     }
 
-    public int getTerritoryOccupied() {
+    public Territory getTerritoryOccupied() {
         return territoryOccupied;
     }
 
-    public void setTerritoryOccupied(int territoryOccupied) {
+    public void setTerritoryOccupied(Territory territoryOccupied) {
         this.territoryOccupied = territoryOccupied;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        ArmyUnits newArmyUnits=new ArmyUnits(noOfUnits);
+        newArmyUnits.setTerritoryOccupied(territoryOccupied);
+        return new ArmyUnits(noOfUnits);
     }
 }
