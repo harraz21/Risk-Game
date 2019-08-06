@@ -34,10 +34,10 @@ public class Main extends Application {
         Territory myTerritory =new Territory(A, new ArmyUnits(10));
         System.out.println("ksk"  + myTerritory);
         myMap.addTerritory(myTerritory);
-        A.addTerrirtory(myTerritory);
+
         myTerritory = new Territory(A, new ArmyUnits(5));
         myMap.addTerritory(myTerritory);
-        A.addTerrirtory(myTerritory);
+
 
         myMap.addTerritory(new Territory(B, new ArmyUnits(5)));
         myMap.addTerritory(new Territory(B, new ArmyUnits(5)));

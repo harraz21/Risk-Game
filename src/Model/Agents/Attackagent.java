@@ -15,7 +15,7 @@ public class Attackagent extends Agent {
     String attackSameCountryAgain ;
 
 
-    public static void attackCountry(String playerName, HashMap<Terrritory> list_T) {
+   /** public static void attackCountry(String playerName, HashMap<Terrritory> list_T) {
         attackAgain = true;
         attackSameCountryAgain= "Yes";
         boolean adjacencyCheck = false;
@@ -23,7 +23,7 @@ public class Attackagent extends Agent {
         boolean checkValidityOfDef = false;
 
 
-    }
+    }**/
 
 
 

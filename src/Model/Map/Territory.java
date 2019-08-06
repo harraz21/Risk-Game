@@ -13,6 +13,10 @@ public class Territory implements Cloneable {
 
     public Territory(Agent defender, ArmyUnits armyUnits) {
         this.defender = defender;
+        if (this.defender != null)
+        {
+            this.defender.getTerritoriesOccuopied().add(this);
+        }
         this.armyUnits = armyUnits;
         neighboringTerritories = new ArrayList<Territory>();
     }
