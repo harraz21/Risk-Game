@@ -28,26 +28,32 @@ public class Territory implements Cloneable {
                     armyUnits.setTerritoryOccupied(this);
                     armyUnits.setNoOfUnits(remainingForces);
                     this.armyUnits = armyUnits;
+                } else {
+                    this.armyUnits.setNoOfUnits(Math.abs(remainingForces));
                 }
             } else {
+                if (defender != null) {
+                    defender.getTerritoriesOccuopied().remove(this);
+                }
                 defender = attacker;
                 defender.getTerritoriesOccuopied().add(this);
-                armyUnits.setTerritoryOccupied(this);
-                this.armyUnits=armyUnits;
+                this.armyUnits = armyUnits;
             }
         }
     }
 
     public void addSoldiers(ArmyUnits armyUnits, Agent agent) {
         if (armyUnits != null && agent == defender && neighboringTerritories.contains(armyUnits.getTerritoryOccupied())) {
-            this.armyUnits.setNoOfUnits(armyUnits.getNoOfUnits() + armyUnits.getNoOfUnits());
+            this.armyUnits.setNoOfUnits(this.armyUnits.getNoOfUnits() + armyUnits.getNoOfUnits());
         }
     }
 
     public ArmyUnits removeArmies(int noOfArmiesRemoved) {
-        if (armyUnits.getNoOfUnits() - noOfArmiesRemoved > 1) {
+        if (armyUnits.getNoOfUnits() - noOfArmiesRemoved >= 1) {
             armyUnits.setNoOfUnits(armyUnits.getNoOfUnits() - noOfArmiesRemoved);
-            return new ArmyUnits(noOfArmiesRemoved);
+            ArmyUnits newArmyUnits = new ArmyUnits(noOfArmiesRemoved);
+            newArmyUnits.setTerritoryOccupied(this);
+            return newArmyUnits;
         } else return null;
     }
 
@@ -78,9 +84,9 @@ public class Territory implements Cloneable {
 
 
     public Object clone() throws CloneNotSupportedException {
-        Territory newTerritory = new Territory(defender,armyUnits);
+        Territory newTerritory = new Territory(defender, armyUnits);
         ArrayList<Territory> newNeighbours = new ArrayList<>();
-        for (Territory territory:neighboringTerritories) {
+        for (Territory territory : neighboringTerritories) {
             newNeighbours.add((Territory) territory.clone());
         }
         newTerritory.setNeighboringTerritories(newNeighbours);
