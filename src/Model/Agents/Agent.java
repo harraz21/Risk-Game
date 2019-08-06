@@ -10,6 +10,9 @@ public class Agent implements Cloneable {
     private int noOfArmyUnits;
     private int noOfUnitsAvailable;
 
+    public Agent(){
+        territoriesOccuopied = new ArrayList<Territory>();
+    }
     public ArrayList<Territory> getTerritoriesOccuopied() {
         return territoriesOccuopied;
     }

@@ -11,9 +11,10 @@ public class Territory implements Cloneable {
     private ArrayList<Territory> neighboringTerritories;
 
 
-    Territory(Agent defender, ArmyUnits armyUnits) {
+    public Territory(Agent defender, ArmyUnits armyUnits) {
         this.defender = defender;
         this.armyUnits = armyUnits;
+        neighboringTerritories = new ArrayList<Territory>();
     }
 
     public void attack(ArmyUnits armyUnits, Agent attacker) {

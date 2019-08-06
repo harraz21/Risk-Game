@@ -6,7 +6,9 @@ public class Map implements Cloneable{
     private ArrayList<Territory> territories;
 
 
-
+    public  Map(){
+        territories = new ArrayList<Territory>();
+    }
     public Object clone() throws  CloneNotSupportedException
     {
         ArrayList<Territory> territoryArrayList=new ArrayList<>();
@@ -22,6 +24,9 @@ public class Map implements Cloneable{
         return territories;
     }
 
+    public void addTerritory(Territory newTerritory) {
+        this.territories.add(newTerritory);
+    }
     public void setTerritories(ArrayList<Territory> territories) {
         this.territories = territories;
     }
