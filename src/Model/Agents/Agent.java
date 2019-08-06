@@ -9,6 +9,7 @@ public class Agent implements Cloneable {
     private ArrayList<Territory> territoriesOccuopied;
     private int noOfArmyUnits;
     private int noOfUnitsAvailable;
+    private String playerName;
 
     public ArrayList<Territory> getTerritoriesOccuopied() {
         return territoriesOccuopied;
