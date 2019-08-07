@@ -11,6 +11,9 @@ public class Agent implements Cloneable {
     private int noOfUnitsAvailable;
     private String playerName;
 
+
+
+
     public Agent(){
         territoriesOccuopied = new ArrayList<Territory>();
     }
@@ -53,4 +56,11 @@ public class Agent implements Cloneable {
         newAgent.setTerritoriesOccuopied(newTerritories);
         return newAgent;
     }
+
+    public boolean canAttack()
+    {
+        return territories.stream().anyMatch((territory) -> (territory.canAttack()));
+    }
+
+
 }
