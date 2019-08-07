@@ -1,4 +1,5 @@
 package Model.Agents;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -6,25 +7,29 @@ import Model.Map.Territory;
 import java.util.ArrayList;
 
 public class Attackagent extends Agent {
-    /*
+     Territory attacker;
+
 
 
     public Territory getAttacker() {
-        if(this.canAttack())
+        if(this.continueAttacking())
         {
-            ArrayList<Territory> canAttackTerritories = new ArrayList<>();
-            territories.stream().filter((ter) -> (ter.canAttack())).forEachOrdered((ter) -> {
-                canAttackTerritories.add(ter);
-            });
+
+
+            ArrayList<Territory> canAttackTerritories = new ArrayList<Territory>();
+            ArrayList<Territory> territories = new ArrayList<>();
+
+
             Territory max = canAttackTerritories.get(0);
             for(int i=1;i<canAttackTerritories.size();i++)
-            {
-                if(canAttackTerritories.get(i).compareTo(max) > 0)
+            {boolean comparing = canAttackTerritories.get(i).equals(max);
+
+                if(comparing =false)
                 {
                     max = canAttackTerritories.get(i);
-                }else if(canAttackTerritories.get(i).compareTo(max) == 0)
+                }else if(comparing= true)
                 {
-                    if(canAttackTerritories.get(i).enemyNeighbors.size() > max.enemyNeighbors.size())
+                    if(canAttackTerritories.get(i).getNeighboringTerritories().size() > max.getNeighboringTerritories().size())
                         max = canAttackTerritories.get(i);
                 }
             }
@@ -35,12 +40,13 @@ public class Attackagent extends Agent {
 
 
     public Territory getDefender() {
-        Territory min = this.attacker.enemyNeighbors.get(0);
-        for(int i=1;i<this.attacker.enemyNeighbors.size();i++)
+        Territory min = this.attacker.getNeighboringTerritories().get(0);
+        for(int i=1;i<this.attacker.getNeighboringTerritories().size();i++)
         {
-            if(this.attacker.enemyNeighbors.get(i).compareTo(min) < 0)
+            boolean y = attacker.getNeighboringTerritories().get(i).equals(min);
+            if(y =false )
             {
-                min = this.attacker.enemyNeighbors.get(i);
+                min = this.attacker.getNeighboringTerritories().get(i);
             }
         }
         return min;
@@ -48,15 +54,15 @@ public class Attackagent extends Agent {
 
     public boolean continueAttacking()
     {
-        return (this.attacker == getMax() && this.canAttack());
+        return (this.attacker== getMax() && this.attack());
     }
     protected void setNOofAttackingArmies() {
-        attacker.noOfFightingArmies = attacker.noOfArmies - 1;
-        if(attacker.noOfFightingArmies > 3)
-            attacker.noOfFightingArmies = 3;
+        attacker.armyUnits = attacker.armyUnits - 1;
+        if(attacker.armyUnits > 3)
+            attacker.armyUnits = 3;
     }
 }
 
 
-    */
-}
+
+
