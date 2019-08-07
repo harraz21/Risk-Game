@@ -21,7 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 1360, 1000));
         primaryStage.show();
     }
 
@@ -44,7 +44,7 @@ public class Main extends Application {
 
         myMap.getTerritories().get(0).getDefender().setNoOfUnitsAvaliable(3);
         Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
-        myNode.generateChildren();
+        //myNode.generateChildren();
 
         launch(args);
     }
