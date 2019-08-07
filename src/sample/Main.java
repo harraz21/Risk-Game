@@ -2,7 +2,7 @@ package sample;
 
 import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
-import Model.Map.Map;
+import Model.Map.RiskMap;
 import Model.Map.Territory;
 import Model.Tree.GameState;
 import javafx.application.Application;
@@ -21,14 +21,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 1360, 1000));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
         //System.out.close();
-        Map myMap = new Map();
+        RiskMap myMap = new RiskMap();
         Agent A = new Agent();
         Agent B = new Agent();
         Territory myTerritory =new Territory(A, new ArmyUnits(10));
@@ -44,7 +44,7 @@ public class Main extends Application {
 
         myMap.getTerritories().get(0).getDefender().setNoOfUnitsAvaliable(3);
         Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
-        myNode.generateChildren();
+        //myNode.generateChildren();
 
         launch(args);
     }
