@@ -34,12 +34,11 @@ public class EgyptCities {
     public static final int JANUB_SINAA = 25;
     // public static final int LUXOR = 26;
 
-    public static Color[] citiesColourList = new  Color[27];
-    public static String[] citiesList = new  String[27];
+    public static Color[] citiesColourList = new Color[26];
+    public static String[] citiesList = new String[26];
     public static HashMap<Integer, ArrayList<Integer>> adjacencyList;
 
-    public static void loadAdjacencyList()
-    {
+    public static void loadAdjacencyList() {
         adjacencyList = new HashMap<>();
         ArrayList<Integer> buffer = new ArrayList<>();
         buffer.add(AL_DAKAHLIYA);
@@ -47,28 +46,28 @@ public class EgyptCities {
         buffer.add(AL_BUHEIRA);
         buffer.add(AL_MONOFIYA);
         buffer.add(AL_QALUOBIYA);
-        adjacencyList.put(AL_GHARBEYA,buffer);
+        adjacencyList.put(AL_GHARBEYA, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_SHARQIYA);
         buffer.add(AL_QAHERA);
         buffer.add(AL_SUAIS);
         buffer.add(SHMAL_SINAA);
         buffer.add(PORT_SAID);
-        adjacencyList.put(AL_ISMAELIA,buffer);
+        adjacencyList.put(AL_ISMAELIA, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_GHARBEYA);
         buffer.add(AL_BUHEIRA);
         buffer.add(AL_QALUOBIYA);
         buffer.add(AL_GIZA);
         buffer.add(AL_DAKAHLIYA);
-        adjacencyList.put(AL_MONOFIYA,buffer);
+        adjacencyList.put(AL_MONOFIYA, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_GIZA);
         buffer.add(AL_SUAIS);
         buffer.add(AL_ISMAELIA);
         buffer.add(AL_SHARQIYA);
         buffer.add(AL_QALUOBIYA);
-        adjacencyList.put(AL_QAHERA,buffer);
+        adjacencyList.put(AL_QAHERA, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_QAHERA);
         buffer.add(AL_GIZA);
@@ -76,14 +75,14 @@ public class EgyptCities {
         buffer.add(AL_GHARBEYA);
         buffer.add(AL_DAKAHLIYA);
         buffer.add(AL_SHARQIYA);
-        adjacencyList.put(AL_QALUOBIYA,buffer);
+        adjacencyList.put(AL_QALUOBIYA, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_QAHERA);
         buffer.add(AL_QALUOBIYA);
         buffer.add(AL_DAKAHLIYA);
         buffer.add(AL_ISMAELIA);
         buffer.add(PORT_SAID);
-        adjacencyList.put(AL_SHARQIYA,buffer);
+        adjacencyList.put(AL_SHARQIYA, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_BAHR_AL_AHMAR);
         buffer.add(AL_GIZA);
@@ -91,7 +90,7 @@ public class EgyptCities {
         buffer.add(AL_ISMAELIA);
         buffer.add(SHMAL_SINAA);
         buffer.add(JANUB_SINAA);
-        adjacencyList.put(AL_SUAIS,buffer);
+        adjacencyList.put(AL_SUAIS, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_SHARQIYA);
         buffer.add(AL_QALUOBIYA);
@@ -99,22 +98,22 @@ public class EgyptCities {
         buffer.add(KAFR_EL_SHIEKH);
         buffer.add(DUMYAT);
         buffer.add(PORT_SAID);
-        adjacencyList.put(AL_DAKAHLIYA,buffer);
+        adjacencyList.put(AL_DAKAHLIYA, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_DAKAHLIYA);
         buffer.add(AL_SHARQIYA);
         buffer.add(AL_ISMAELIA);
         buffer.add(SHMAL_SINAA);
-        adjacencyList.put(PORT_SAID,buffer);
+        adjacencyList.put(PORT_SAID, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_DAKAHLIYA);
-        adjacencyList.put(DUMYAT,buffer);
+        adjacencyList.put(DUMYAT, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_ISKINDERIA);
         buffer.add(AL_BUHEIRA);
         buffer.add(AL_GIZA);
         buffer.add(AL_WADI_AL_JADID);
-        adjacencyList.put(MATROUH,buffer);
+        adjacencyList.put(MATROUH, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_ISKINDERIA);
         buffer.add(MATROUH);
@@ -122,11 +121,11 @@ public class EgyptCities {
         buffer.add(AL_MONOFIYA);
         buffer.add(AL_GHARBEYA);
         buffer.add(KAFR_EL_SHIEKH);
-        adjacencyList.put(AL_BUHEIRA,buffer);
+        adjacencyList.put(AL_BUHEIRA, buffer);
         buffer = new ArrayList<>();
         buffer.add(BANI_SUAIF);
         buffer.add(AL_GIZA);
-        adjacencyList.put(AL_FAYOUM,buffer);
+        adjacencyList.put(AL_FAYOUM, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_SUAIS);
         buffer.add(AL_BAHR_AL_AHMAR);
@@ -139,36 +138,36 @@ public class EgyptCities {
         buffer.add(AL_MONOFIYA);
         buffer.add(AL_QALUOBIYA);
         buffer.add(AL_QAHERA);
-        adjacencyList.put(AL_GIZA,buffer);
+        adjacencyList.put(AL_GIZA, buffer);
         buffer = new ArrayList<>();
         buffer.add(BANI_SUAIF);
         buffer.add(AL_BAHR_AL_AHMAR);
         buffer.add(ASYOUT);
         buffer.add(AL_WADI_AL_JADID);
         buffer.add(AL_GIZA);
-        adjacencyList.put(AL_MINIA,buffer);
+        adjacencyList.put(AL_MINIA, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_FAYOUM);
         buffer.add(AL_GIZA);
         buffer.add(AL_BAHR_AL_AHMAR);
         buffer.add(AL_MINIA);
-        adjacencyList.put(BANI_SUAIF,buffer);
+        adjacencyList.put(BANI_SUAIF, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_BUHEIRA);
         buffer.add(AL_GHARBEYA);
         buffer.add(AL_DAKAHLIYA);
-        adjacencyList.put(KAFR_EL_SHIEKH,buffer);
+        adjacencyList.put(KAFR_EL_SHIEKH, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_BAHR_AL_AHMAR);
         buffer.add(QINA);
         buffer.add(AL_WADI_AL_JADID);
-        adjacencyList.put(ASWAN,buffer);
+        adjacencyList.put(ASWAN, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_BAHR_AL_AHMAR);
         buffer.add(AL_MINIA);
         buffer.add(AL_WADI_AL_JADID);
         buffer.add(SUHAJ);
-        adjacencyList.put(ASYOUT,buffer);
+        adjacencyList.put(ASYOUT, buffer);
         buffer = new ArrayList<>();
         buffer.add(MATROUH);
         buffer.add(AL_GIZA);
@@ -177,19 +176,19 @@ public class EgyptCities {
         buffer.add(SUHAJ);
         buffer.add(QINA);
         buffer.add(ASWAN);
-        adjacencyList.put(AL_WADI_AL_JADID,buffer);
+        adjacencyList.put(AL_WADI_AL_JADID, buffer);
         buffer = new ArrayList<>();
         buffer.add(SUHAJ);
         buffer.add(AL_WADI_AL_JADID);
         buffer.add(ASWAN);
         buffer.add(AL_BAHR_AL_AHMAR);
-        adjacencyList.put(QINA,buffer);
+        adjacencyList.put(QINA, buffer);
         buffer = new ArrayList<>();
         buffer.add(ASYOUT);
         buffer.add(AL_WADI_AL_JADID);
         buffer.add(QINA);
         buffer.add(AL_BAHR_AL_AHMAR);
-        adjacencyList.put(SUHAJ,buffer);
+        adjacencyList.put(SUHAJ, buffer);
         buffer = new ArrayList<>();
         buffer.add(AL_SUAIS);
         buffer.add(AL_GIZA);
@@ -199,22 +198,21 @@ public class EgyptCities {
         buffer.add(SUHAJ);
         buffer.add(QINA);
         buffer.add(ASWAN);
-        adjacencyList.put(AL_BAHR_AL_AHMAR,buffer);
+        adjacencyList.put(AL_BAHR_AL_AHMAR, buffer);
         buffer = new ArrayList<>();
         buffer.add(SHMAL_SINAA);
         buffer.add(AL_SUAIS);
-        adjacencyList.put(JANUB_SINAA,buffer);
+        adjacencyList.put(JANUB_SINAA, buffer);
         buffer = new ArrayList<>();
         buffer.add(JANUB_SINAA);
         buffer.add(AL_ISMAELIA);
         buffer.add(AL_SUAIS);
         buffer.add(PORT_SAID);
-        adjacencyList.put(SHMAL_SINAA,buffer);
+        adjacencyList.put(SHMAL_SINAA, buffer);
     }
 
 
-    public static void loadColourList()
-    {
+    public static void loadColourList() {
         citiesColourList[AL_GHARBEYA] = Color.valueOf("#41ae76");
         citiesColourList[AL_ISMAELIA] = Color.valueOf("#238b45");
         citiesColourList[AL_MONOFIYA] = Color.valueOf("#006d2c");
@@ -244,8 +242,7 @@ public class EgyptCities {
         // citiesColourList[LUXOR] = Color.valueOf("#bd0026");
     }
 
-    public static void loadCitiesList()
-    {
+    public static void loadCitiesList() {
         citiesList[AL_GHARBEYA] = "AL_GHARBEYA";
         citiesList[AL_ISMAELIA] = "AL_ISMAELIA";
         citiesList[AL_MONOFIYA] = "AL_MONOFIYA";
@@ -275,26 +272,30 @@ public class EgyptCities {
         //citiesList[LUXOR] = "LUXOR";
     }
 
-    public static String getCityName(Color color)
-    {
-        for (int i = 0;i <  26;i++) {
+    public static String getCityName(Color color) {
+        for (int i = 0; i < 26; i++) {
             if (citiesColourList[i].equals(color))
                 return citiesList[i];
         }
         return null;
     }
 
-    public static int getCity(Color color)
-    {
-        for (int i = 0;i <  26;i++) {
+    public static int getCity(Color color) {
+        for (int i = 0; i < 26; i++) {
             if (citiesColourList[i].equals(color))
                 return i;
         }
         return Integer.MAX_VALUE;
     }
 
-
-
+    public static Boolean isAcity(Color color) {
+        for (Color color1 : citiesColourList) {
+            if (color1.equals(color)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }
