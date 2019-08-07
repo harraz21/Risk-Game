@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class Territory implements Cloneable {
 
+    public String name;
     private Agent defender;
     private ArmyUnits armyUnits;
     private ArrayList<Territory> neighboringTerritories;

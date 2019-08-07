@@ -1,11 +1,8 @@
 package Model.Agents.ArmyUnits;
 
 import Model.Agents.Agent;
-import Model.Map.RiskMap;
 import Model.Map.Territory;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +15,7 @@ public class pacifistAgent  extends Agent {
         int d = 0;
         int num = 0;
         String name;
-        int min = 999;
+        String min = "minimumCountry";
 
 
 
@@ -36,8 +33,8 @@ public class pacifistAgent  extends Agent {
         for (Map.Entry<Territory, String> stayHereArmedCountry: armies.entrySet()) {
             name = myTerritories.get(stayHereArmedCountry.getKey());
             if (name == theplayerName) {
-                  Territory armies = stayHereArmedCountry.getValue();
-                if (armies<min) {
+                  String armies = stayHereArmedCountry.getValue();
+                if (armies.compareTo(min)>0) {//comparing strings xD
                     min = armies; // my country with the least armies
                     c = stayHereArmedCountry.getKey();
                 }
@@ -45,23 +42,35 @@ public class pacifistAgent  extends Agent {
 
         }
         if (num < 3) {
-            int x = min;
+            String x = min;
             x = x + 3;
             armies.put(c, x);
         } else {
-            int x = min;
+            String x = min;
             x = x + num;
             armies.put(c, x);
 
         }
     }
+    public boolean checkMycountry(String s) {
+        for (Map.Entry<Territory, String> entry : myTerritories.entrySet()) {
+            if (entry.getKey().name.equals(s) && !entry.getValue().equals(theplayerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public String getArmies(String s) {
+        String theName = null;
 
+        for (Map.Entry<Territory, String> entry : armies.entrySet()) {
+            if (entry.getKey().name.equals(s)) {
+                theName =entry.getValue();
+            }
+            return theName;
 
+        }
+        return theName;
+    }}
 
-
-
-
-
-
-}
