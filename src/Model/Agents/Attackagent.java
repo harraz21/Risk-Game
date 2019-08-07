@@ -6,11 +6,10 @@ import Model.Map.Territory;
 import java.util.ArrayList;
 
 public class Attackagent extends Agent {
+    /*
 
 
-
-
-    Public Territory getAttacker() {
+    public Territory getAttacker() {
         if(this.canAttack())
         {
             ArrayList<Territory> canAttackTerritories = new ArrayList<>();
@@ -59,5 +58,5 @@ public class Attackagent extends Agent {
 }
 
 
-
+    */
 }
