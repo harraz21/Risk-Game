@@ -11,6 +11,7 @@ import static sun.management.MemoryUsageCompositeData.getMax;
 
 public class Attackagent extends Agent {
      Territory attacker;
+    ArmyUnits xx;
 
 
 
@@ -57,11 +58,9 @@ public class Attackagent extends Agent {
 
     public int  continueAttacking()
     {
-        ArmyUnits xx=new ArmyUnits();
-        Territory b = new Territory();
-         int v= xx.getNoOfUnits();
-         int b = b.getNeighboringTerritories();
-        int c =getMax(v,b);
+          int y= xx.getNoOfUnits();
+          int b = attacker.getNeighboringTerritories().size();
+        int c =b-y;
         return c ;
     }
 

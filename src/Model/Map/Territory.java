@@ -4,8 +4,10 @@ import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Territory implements Cloneable {
+
     private Agent defender;
     private ArmyUnits armyUnits;
     private ArrayList<Territory> neighboringTerritories;

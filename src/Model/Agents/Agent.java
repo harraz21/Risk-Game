@@ -28,6 +28,9 @@ public class Agent implements Cloneable {
     public int getNoOfUnitsAvaliable() {
         return noOfUnitsAvailable;
     }
+    public String getNameOfplayer() {
+        return playerName;
+    }
 
     public void setNoOfUnitsAvaliable(int noOfUnitsAvaliable) {
         this.noOfUnitsAvailable = noOfUnitsAvaliable;

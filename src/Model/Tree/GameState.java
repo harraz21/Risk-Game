@@ -1,29 +1,29 @@
 package Model.Tree;
 
 import Model.Agents.Agent;
-import Model.Map.Map;
+import Model.Map.RiskMap;
 import Model.Map.Territory;
 
 import java.util.ArrayList;
 
 public class GameState {
-    private Map currentMap;
+    private RiskMap currentRiskMap;
 
 
-    public GameState(Map state){
-        this.currentMap = state;
+    public GameState(RiskMap state){
+        this.currentRiskMap = state;
     }
 
-    public Map getCurrentMap() {
-        return currentMap;
+    public RiskMap getCurrentRiskMap() {
+        return currentRiskMap;
     }
 
-    public void setCurrentMap(Map currentMap) {
-        this.currentMap = currentMap;
+    public void setCurrentRiskMap(RiskMap currentRiskMap) {
+        this.currentRiskMap = currentRiskMap;
     }
     public ArrayList<Agent> getAgents(){
         ArrayList<Agent> agents = new ArrayList<Agent>();
-        for (Territory i: currentMap.getTerritories()) {
+        for (Territory i: currentRiskMap.getTerritories()) {
             if(i.getDefender()!=null){
                 if (!agents.contains(i.getDefender())){
                     agents.add(i.getDefender());

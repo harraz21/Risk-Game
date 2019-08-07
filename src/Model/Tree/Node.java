@@ -5,7 +5,7 @@ package Model.Tree;
 
 import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
-import Model.Map.Map;
+import Model.Map.RiskMap;
 import Model.Map.Territory;
 
 import java.util.ArrayList;
@@ -76,14 +76,14 @@ public class Node  {
                 }
                 sum = j;
                 System.out.println("num is "+sum  );
-                Map newMap = null;
+                RiskMap newRiskMap = null;
                 try {
-                    newMap = (Map) state.getCurrentMap().clone();
+                    newRiskMap = (RiskMap) state.getCurrentRiskMap().clone();
                 } catch (CloneNotSupportedException e) {
                     System.out.println("could'nt clone");
                     e.printStackTrace();
                 }
-                GameState newState = new GameState(newMap);
+                GameState newState = new GameState(newRiskMap);
 
                 Agent myAgent = newState.getAgents().get(state.getAgents().indexOf(i)) ;
                 for (Territory x:
