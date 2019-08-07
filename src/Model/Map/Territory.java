@@ -20,7 +20,20 @@ public class Territory implements Cloneable {
         this.armyUnits = armyUnits;
         neighboringTerritories = new ArrayList<Territory>();
     }
+    public void move(Territory adjacent){
+        int num = this.armyUnits.getNoOfUnits();
+        if (num<2){
+            return;
+        }
 
+        if ((adjacent.getDefender() != this.getDefender())||(adjacent.getDefender()==null)){
+            //attack
+            attack(this.getArmyUnits(),this.getDefender());
+        }else {
+            adjacent.addSoldiers(num-1);
+            this.removeArmies(num);
+        }
+    }
     public void attack(ArmyUnits armyUnits, Agent attacker) {
         if (armyUnits != null && attacker != defender) {
             if (this.armyUnits != null) {
@@ -51,7 +64,9 @@ public class Territory implements Cloneable {
             this.armyUnits.setNoOfUnits(this.armyUnits.getNoOfUnits() + armyUnits.getNoOfUnits());
         }
     }
-
+    public void addSoldiers(int noOfArmies){
+        this.armyUnits.setNoOfUnits(this.armyUnits.getNoOfUnits() + noOfArmies);
+    }
     public ArmyUnits removeArmies(int noOfArmiesRemoved) {
         if (armyUnits.getNoOfUnits() - noOfArmiesRemoved >= 1) {
             armyUnits.setNoOfUnits(armyUnits.getNoOfUnits() - noOfArmiesRemoved);

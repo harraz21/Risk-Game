@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 
 
-public class Node {
+public class Node  {
 
     /**
      * (RIGHT = childre[0], LEFT = childre[1], UP = childre[2], DOWN =
@@ -40,22 +40,26 @@ public class Node {
 
 
 
-    public void generateChildren() {
+    public void generateChildren(Agent myAgent) {
         //generate
         children = new ArrayList<>(Arrays.asList(new Node[4]));
         int emptyTile = -1;
 
-        moveTile(emptyTile);
+        try {
+            moveTile(myAgent);
+        } catch (CloneNotSupportedException e) {
+            System.out.println("couldn;t generate children");
+        }
     }
 
-    private void moveTile(int emptyTile) {
+    private void moveTile(Agent cAgent) throws CloneNotSupportedException {
         //Move
         ArrayList<Node> newChildren = new ArrayList<>(Arrays.asList(new Node[4]));
 
-        for (Agent i:
-             state.getAgents()) {
+        Agent i = cAgent;
+        int index = state.getAgents().indexOf(i);
             if (i == null){
-                continue;
+                return;
             }
             long num =  (long)Math.pow(10, i.getTerritoriesOccuopied().size());
             System.out.println("Started ++++++++++"+ num);
@@ -88,9 +92,22 @@ public class Node {
                     sum /=10;
                 }
                 newChildren.add(new Node(newState));
-                System.out.println("Size "+ newChildren.size());
+                System.out.println("placing Size "+ newChildren.size());
+            }
+            //don't over analyze it
+        for (Node x:
+             newChildren) {
+            for (Territory y:
+                   x.getState().getAgents().get(index).getTerritoriesOccuopied()) {
+                x = (Node) x.clone();
+                for (Territory z:
+                     y.getNeighboringTerritories()) {
+                        y.move(z);//attack or move the whole army
+                        children.add(x);
+                }
             }
         }
+
         System.out.println("size of children  " + newChildren.size());
         if (parent != null) {
             for (Node newChild : newChildren) {
@@ -147,4 +164,9 @@ public class Node {
         return false;}
 
 
+
+    public int compareTo(Node node) {
+
+        return 0;
+    }
 }
