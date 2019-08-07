@@ -15,7 +15,7 @@ public class pacifistAgent  extends Agent {
         int d = 0;
         int num = 0;
         String name;
-        String min = "minimumCountry";
+        String min = "minimumCountrycaptured";
 
 
 
