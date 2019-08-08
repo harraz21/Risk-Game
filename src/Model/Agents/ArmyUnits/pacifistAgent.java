@@ -3,74 +3,65 @@ package Model.Agents.ArmyUnits;
 import Model.Agents.Agent;
 import Model.Map.Territory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class pacifistAgent  extends Agent {
     String theplayerName = new Agent().getNameOfplayer();
-    HashMap<Territory, String> armies = new HashMap<Territory, String>();
-    HashMap<Territory, String> myTerritories = new HashMap<Territory, String>();
-    public void reinforce() {
-        int count = 0;
-        int d = 0;
-        int num = 0;
-        String name;
-        String min = "minimumCountrycaptured";
+
+    ArrayList<Territory> myTerritories = new ArrayList<Territory>();
 
 
+    public ArrayList<Territory> reinforce() {
 
 
-        for (Map.Entry<Territory, String> entry :myTerritories.entrySet()) {
-            name = myTerritories.get(entry.getKey());
-            if (name == theplayerName) {
-                d++;
-            }
-        }
-        // d now has number of all my territories
-        num = d / 3;
-        Territory c = null;
+        for(Territory territory:myTerritories) {
+            if (territory.armyUnits.getNoOfUnits() > 3) {
+                int i = 0;
+                ArrayList<Territory> myTerritoriesN =new ArrayList<Territory>();
+                   myTerritoriesN= myTerritories.get(i).getNeighboringTerritories();
 
-        for (Map.Entry<Territory, String> stayHereArmedCountry: armies.entrySet()) {
-            name = myTerritories.get(stayHereArmedCountry.getKey());
-            if (name == theplayerName) {
-                  String armies = stayHereArmedCountry.getValue();
-                if (armies.compareTo(min)>0) {//comparing strings xD
-                    min = armies; // my country with the least armies
-                    c = stayHereArmedCountry.getKey();
+                for (Territory enemy :myTerritoriesN) {
+                    if (enemy.armyUnits.getNoOfUnits() == 1)
+                        return myTerritories;
+
                 }
             }
+        }
 
-        }
-        if (num < 3) {
-            String x = min;
-            x = x + 3;
-            armies.put(c, x);
-        } else {
-            String x = min;
-            x = x + num;
-            armies.put(c, x);
+        return  null;
 
-        }
-    }
-    public boolean checkMycountry(String s) {
-        for (Map.Entry<Territory, String> entry : myTerritories.entrySet()) {
-            if (entry.getKey().name.equals(s) && !entry.getValue().equals(theplayerName)) {
-                return true;
-            }
-        }
-        return false;
     }
 
-    public String getArmies(String s) {
-        String theName = null;
-
-        for (Map.Entry<Territory, String> entry : armies.entrySet()) {
-            if (entry.getKey().name.equals(s)) {
-                theName =entry.getValue();
+    public ArrayList<Territory> getDefender() {/**/
+        ArrayList<Territory> min = this.myTerritories.get(0).getNeighboringTerritories();//mtl3bsh
+     int iteration =  min.size();//size;hena moshkela  3awza size*********** neighbor***!!!
+        for(int i=1;i<iteration;i++)
+        {
+            if(this.myTerritories.get(i).getNeighboringTerritories().equals(min))
+            {
+                min = this.myTerritories.get(i).getNeighboringTerritories();
             }
-            return theName;
-
         }
-        return theName;
-    }}
+        return min;
+    }
+
+
+    public boolean continueAttacking()
+    {
+    return  true; }
+
+
+    protected void setNOofAttackingArmies() {
+
+
+
+
+
+
+    }
+
+
+
+}
+
 

@@ -10,7 +10,8 @@ public class Territory implements Cloneable {
 
     public String name;
     private Agent defender;
-    private ArmyUnits armyUnits;
+    private Agent attacker;
+    public ArmyUnits armyUnits;
     private ArrayList<Territory> neighboringTerritories;
 
 
@@ -30,7 +31,7 @@ public class Territory implements Cloneable {
         }
 
         if ((adjacent.getDefender() != this.getDefender())||(adjacent.getDefender()==null)){
-            //attack
+            //attack Territory
             attack(this.getArmyUnits(),this.getDefender());
         }else {
             adjacent.addSoldiers(num-1);
@@ -79,8 +80,14 @@ public class Territory implements Cloneable {
         } else return null;
     }
 
+    ///attack be 5 -> remove army 5 return Army Class -> attack?? ya bentyyyyyyyyyyyyy ?
+//wat ?, 3awza size neghbor itrate 3aleh mana 3mlto kda
+
     public Agent getDefender() {
         return defender;
+    }
+    public Agent getAttacker() {
+        return attacker;
     }
 
     public void setDefender(Agent defender) {
@@ -98,7 +105,7 @@ public class Territory implements Cloneable {
 
     public ArrayList<Territory> getNeighboringTerritories() {
         return neighboringTerritories;
-    }
+    }//3awza size da xD
 
     public void setNeighboringTerritories(ArrayList<Territory> neighboringTerritories) {
         this.neighboringTerritories = neighboringTerritories;
