@@ -1,6 +1,6 @@
 package sample;
 
-import Model.Map.Map;
+import Model.Map.RiskMap;
 import Model.MapLoading.EgyptCities;
 import Model.MapLoading.Maps;
 import javafx.fxml.FXML;

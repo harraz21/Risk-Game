@@ -2,8 +2,7 @@ package sample;
 
 import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
-import Model.Map.RiskMap;
-import Model.Map.RiskMap;
+import Model.Map.Map;
 import Model.Map.Territory;
 import Model.Tree.GameState;
 import javafx.application.Application;
@@ -29,7 +28,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //System.out.close();
-        RiskMap myMap = new RiskMap();
+        Map myMap = new Map();
         Agent A = new Agent();
         Agent B = new Agent();
         Territory myTerritory =new Territory(A, new ArmyUnits(10));
@@ -45,7 +44,7 @@ public class Main extends Application {
 
         myMap.getTerritories().get(0).getDefender().setNoOfUnitsAvaliable(3);
         Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
-       // myNode.generateChildren();
+        myNode.generateChildren();
 
         launch(args);
     }
