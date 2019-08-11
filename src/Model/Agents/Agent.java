@@ -48,6 +48,13 @@ public class Agent implements Cloneable {
         this.noOfArmyUnits = noOfArmyUnits;
     }
 
+    public void updateUnitsAvaliable(){
+        int no = this.getTerritoriesOccuopied().size()/3;
+        if (no<3){
+            no = 3;
+        }
+        this.setNoOfUnitsAvaliable(no);
+    }
     public Object clone() throws  CloneNotSupportedException
     {
        ArrayList<Territory> newTerritories = new ArrayList<>();

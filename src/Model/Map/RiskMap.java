@@ -22,6 +22,11 @@ public class RiskMap implements Cloneable{
         B.setOpponent(A);
         territories = new ArrayList<Territory>();
     }
+
+    public ArrayList<Agent> getPlayers() {
+        return Players;
+    }
+
     public Object clone() throws  CloneNotSupportedException
     {
         ArrayList<Territory> territoryArrayList=new ArrayList<>();
@@ -38,6 +43,16 @@ public class RiskMap implements Cloneable{
         return territories;
     }
 
+    public void print(){
+        System.out.println("+++++++++++++++++");
+        for (Territory x:
+             territories) {
+            System.out.println("Territory "+ territories.indexOf(x)+ " " +x.getArmyUnits().getNoOfUnits()
+            +" "+Players.indexOf(x.getDefender()));
+        }
+        System.out.println("---------------");
+
+    }
     public void addTerritory(Territory newTerritory) {
         this.territories.add(newTerritory);
     }

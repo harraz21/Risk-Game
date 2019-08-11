@@ -3,6 +3,8 @@ package sample;
 import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
 import Model.Agents.Attackagent;
+import Model.Agents.Passive;
+import Model.Agents.*;
 import Model.Map.RiskMap;
 
 import Model.Map.Territory;
@@ -30,8 +32,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //System.out.close();
-        Agent A = new Agent();
-        Agent B = new Agent();
+        Agent A = new Passive();
+        Agent B = new Passive();
         RiskMap myMap = new RiskMap(A,B);
 
         Territory myTerritoryA =new Territory(A, new ArmyUnits(10));
@@ -45,27 +47,36 @@ public class Main extends Application {
         myMap.addTerritory(myTerritoryD);
         Territory.neighbor(myTerritoryC,myTerritoryD);
         Territory.neighbor(myTerritoryB,myTerritoryC);
-        myMap.getTerritories().get(0).getDefender().setNoOfUnitsAvaliable(3);
+        myMap.getPlayers().get(0).setNoOfUnitsAvaliable(20);
+        myMap.getPlayers().get(1).setNoOfUnitsAvaliable(20);
+        myMap.print();
 
+        ((Passive)A).play(myMap);
+        A.updateUnitsAvaliable();
+        myMap.print();
+        ((Passive) B).play(myMap);
+        B.updateUnitsAvaliable();
+        myMap.print();
+        ((Passive)A).play(myMap);
+        A.updateUnitsAvaliable();
+        myMap.print();
+        ((Passive) B).play(myMap);
+        B.updateUnitsAvaliable();
+        myMap.print();
 
+       // Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
+       // myNode.generateChildren(A);
+        //System.out.println("Enter C");
 
-
-
-
-
-        Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
-        myNode.generateChildren(A);
-        System.out.println("Enter C");
-
-        launch(args);
-        Attackagent cc = new Attackagent();
+        //launch(args);
+        /*Attackagent cc = new Attackagent();
         Territory myTerritoryForAttacker =new Territory(cc, new ArmyUnits(10));
         myMap.addTerritory(new Territory(cc, new ArmyUnits(5)));
         cc.continueAttacking();
         cc.getDefender();
         cc.getAttacker();
         System.out.println("Enter Continoing is done");
-
+*/
     }
 
 }
