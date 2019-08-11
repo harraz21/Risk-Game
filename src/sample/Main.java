@@ -2,6 +2,7 @@ package sample;
 
 import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
+import Model.Agents.Attackagent;
 import Model.Map.RiskMap;
 
 import Model.Map.Territory;
@@ -45,9 +46,18 @@ public class Main extends Application {
 
         myMap.getTerritories().get(0).getDefender().setNoOfUnitsAvaliable(3);
         Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
-       // myNode.generateChildren(); ->Error
+       //myNode.generateChildren();
+        System.out.println("Enter C");
 
         launch(args);
+        Attackagent cc = new Attackagent();
+        Territory myTerritoryForAttacker =new Territory(cc, new ArmyUnits(10));
+        myMap.addTerritory(new Territory(cc, new ArmyUnits(5)));
+cc.continueAttacking();
+cc.getDefender();
+cc.getAttacker();
+        System.out.println("Enter Continoing is done");
+
     }
 
 }

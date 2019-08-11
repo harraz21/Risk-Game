@@ -16,9 +16,10 @@ public class Attackagent extends Agent {
 
 
     public Territory getAttacker() {
-        if(this.continueAttacking()==0)
-        {
+        System.out.println("Attacking Her :'( ");
 
+        if(this.continueAttacking()>0)
+        {
 
             ArrayList<Territory> canAttackTerritories = new ArrayList<Territory>();
             ArrayList<Territory> territories = new ArrayList<>();
@@ -44,6 +45,8 @@ public class Attackagent extends Agent {
 
 
     public Territory getDefender() {
+
+        System.out.println("Spreed Units");
         Territory min = this.attacker.getNeighboringTerritories().get(0);
         for(int i=1;i<this.attacker.getNeighboringTerritories().size();i++)
         {
@@ -58,9 +61,17 @@ public class Attackagent extends Agent {
 
     public int  continueAttacking()
     {
-          int y= xx.getNoOfUnits();
-          int b = attacker.getNeighboringTerritories().size();
-        int c =b-y;
+        System.out.println("3arekny");
+         xx.setNoOfUnits(5);
+        int u = xx.getNoOfUnits();
+        System.out.println(u);
+       // System.out.println(u +"units" );
+
+        int b =2;// attacker.getNeighboringTerritories().size();
+        System.out.println(b);
+
+        int c =u-b;
+        System.out.println(c );
         return c ;
     }
 
