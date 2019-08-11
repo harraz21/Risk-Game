@@ -1,5 +1,6 @@
-package Model.Agents;
+package Model.Agents.Old;
 
+import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
 import Model.Map.Territory;
 import Model.Tree.GameState;
@@ -7,7 +8,7 @@ import Model.Tree.GreedyNode;
 
 import java.util.ArrayList;
 
-public class Search extends Agent  {
+public class Search extends Agent {
    ArrayList <Territory >attackingList=new ArrayList<Territory>();
     ArrayList<Territory> attacker;
     GreedyNode Greedy;

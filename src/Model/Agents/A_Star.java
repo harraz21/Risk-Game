@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 import java.util.Stack;
 
 
-public class A_Star_Agent extends Agent {
+public class A_Star extends Agent {
 
 
 
@@ -23,7 +23,7 @@ public class A_Star_Agent extends Agent {
         private int pathCost;
         private Agent myAgent;
 
-        public A_Star_Agent(Agent myAgent, Heuristic heuristicType) {
+        public A_Star(Agent myAgent, Heuristic heuristicType) {
             this.myAgent = myAgent;
             this.heuristicType = heuristicType;
         }

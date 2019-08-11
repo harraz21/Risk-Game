@@ -54,6 +54,7 @@ public class Agent implements Cloneable {
         if (no<3){
             no = 3;
         }
+        System.out.println("updated with "+no);
         this.setNoOfUnitsAvaliable(no);
     }
     public void play(RiskMap myMap){
@@ -66,7 +67,7 @@ public class Agent implements Cloneable {
 
             }catch (Exception b){
                 try {
-                    ((Pacifist)this).play(myMap);
+                    ((Aggressive)this).play(myMap);
 
                 }catch (Exception c){
                     try {

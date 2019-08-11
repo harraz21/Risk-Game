@@ -1,5 +1,6 @@
-package Model.Agents;
+package Model.Agents.Old;
 
+import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
 import Model.Map.Territory;
 

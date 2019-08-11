@@ -1,6 +1,7 @@
-package Model.Agents.ArmyUnits;
+package Model.Agents.Old;
 
 import Model.Agents.Agent;
+import Model.Agents.ArmyUnits.ArmyUnits;
 import Model.Map.Territory;
 
 import java.util.ArrayList;

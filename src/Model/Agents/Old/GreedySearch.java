@@ -1,4 +1,4 @@
-package Model.Agents;
+package Model.Agents.Old;
 import java.util.PriorityQueue;
 
 import Model.Tree.GameState;
