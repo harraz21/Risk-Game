@@ -32,11 +32,11 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //System.out.close();
-        Agent A = new Passive();
-        Agent B = new Passive();
+        Agent A = new Pacifist();
+        Agent B = new Pacifist();
         RiskMap myMap = new RiskMap(A,B);
 
-        Territory myTerritoryA =new Territory(A, new ArmyUnits(10));
+        Territory myTerritoryA =new Territory(A, new ArmyUnits(5));
         myMap.addTerritory(myTerritoryA);
         Territory myTerritoryB = new Territory(A, new ArmyUnits(5));
         myMap.addTerritory(myTerritoryB);
@@ -47,22 +47,23 @@ public class Main extends Application {
         myMap.addTerritory(myTerritoryD);
         Territory.neighbor(myTerritoryC,myTerritoryD);
         Territory.neighbor(myTerritoryB,myTerritoryC);
-        myMap.getPlayers().get(0).setNoOfUnitsAvaliable(20);
-        myMap.getPlayers().get(1).setNoOfUnitsAvaliable(20);
-        myMap.print();
+        Territory.neighbor(myTerritoryA,myTerritoryD);
+        Territory.neighbor(myTerritoryB,myTerritoryD);
 
-        ((Passive)A).play(myMap);
-        A.updateUnitsAvaliable();
+        myMap.getPlayers().get(0).setNoOfUnitsAvaliable(50);
+        myMap.getPlayers().get(1).setNoOfUnitsAvaliable(0);
         myMap.print();
-        ((Passive) B).play(myMap);
-        B.updateUnitsAvaliable();
-        myMap.print();
-        ((Passive)A).play(myMap);
-        A.updateUnitsAvaliable();
-        myMap.print();
-        ((Passive) B).play(myMap);
-        B.updateUnitsAvaliable();
-        myMap.print();
+        int current = 0;
+        while (!myMap.isGoal()){
+            System.out.println(current);
+
+            myMap.getPlayers().get(current).play(myMap);
+            myMap.getPlayers().get(current).updateUnitsAvaliable();
+            myMap.print();
+            current = current ==0 ? 1:0;
+        }
+        System.out.println("Enddd");
+
 
        // Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
        // myNode.generateChildren(A);

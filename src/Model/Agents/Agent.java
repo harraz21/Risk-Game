@@ -1,6 +1,7 @@
 package Model.Agents;
 
 import Model.Agents.ArmyUnits.ArmyUnits;
+import Model.Map.RiskMap;
 import Model.Map.Territory;
 
 import java.util.ArrayList;
@@ -54,6 +55,39 @@ public class Agent implements Cloneable {
             no = 3;
         }
         this.setNoOfUnitsAvaliable(no);
+    }
+    public void play(RiskMap myMap){
+        try {
+            ((Passive)this).play(myMap);
+
+        }catch (Exception a){
+            try {
+                ((Pacifist)this).play(myMap);
+
+            }catch (Exception b){
+                try {
+                    ((Pacifist)this).play(myMap);
+
+                }catch (Exception c){
+                    try {
+                        ((Pacifist)this).play(myMap);
+
+                    }catch (Exception d){
+                        try {
+                            ((Pacifist)this).play(myMap);
+
+                        }catch (Exception e){
+                            try {
+                                ((Pacifist)this).play(myMap);
+
+                            }catch (Exception f){
+                                   f.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     public Object clone() throws  CloneNotSupportedException
     {

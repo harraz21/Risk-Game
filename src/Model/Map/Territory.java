@@ -40,14 +40,16 @@ public class Territory implements Cloneable {
         }
     }
     public void attack(ArmyUnits armyUnits, Agent attacker) {
-        if (armyUnits != null && attacker != defender) {
+        System.out.println("Attempted attack "+armyUnits.getNoOfUnits()+"  vs  "+this.armyUnits.getNoOfUnits());
+        if ((armyUnits != null) && (attacker != defender)) {
+
             if (this.armyUnits != null) {
+
                 int remainingForces = armyUnits.getNoOfUnits() - this.armyUnits.getNoOfUnits();
                 if (remainingForces >= 0) {
                     defender.getTerritoriesOccuopied().remove(this);
                     defender = attacker;
-                    defender.getTerritoriesOccuopied().add(this);
-                    armyUnits.setTerritoryOccupied(this);
+                    attacker.getTerritoriesOccuopied().add(this);
                     armyUnits.setNoOfUnits(remainingForces);
                     this.armyUnits = armyUnits;
                 } else {

@@ -42,7 +42,14 @@ public class RiskMap implements Cloneable{
     public ArrayList<Territory> getTerritories() {
         return territories;
     }
-
+    public boolean isGoal(){
+        for (Agent x:
+             getPlayers()) {
+            if (x.getTerritoriesOccuopied().size()==0)
+                return true;
+        }
+        return false;
+    }
     public void print(){
         System.out.println("+++++++++++++++++");
         for (Territory x:
