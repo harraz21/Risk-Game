@@ -1,17 +1,12 @@
 package Model.Agents;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Random;
 
 import Model.Agents.ArmyUnits.ArmyUnits;
 import Model.Map.Territory;
-import java.util.ArrayList;
 
-import static sun.management.MemoryUsageCompositeData.getMax;
+import java.util.ArrayList;
 
 public class Attackagent extends Agent {
      Territory attacker;
-    ArmyUnits xx;
 
 
 
@@ -47,6 +42,7 @@ public class Attackagent extends Agent {
     public Territory getDefender() {
 
         System.out.println("Spreed Units");
+        if ( this.attacker.getNeighboringTerritories().get(0)!=null){
         Territory min = this.attacker.getNeighboringTerritories().get(0);
         for(int i=1;i<this.attacker.getNeighboringTerritories().size();i++)
         {
@@ -55,13 +51,14 @@ public class Attackagent extends Agent {
             {
                 min = this.attacker.getNeighboringTerritories().get(i);
             }
+        }        return min;
         }
-        return min;
+        return null;
     }
 
     public int  continueAttacking()
-    {
-        System.out.println("3arekny");
+    {  ArmyUnits xx = new ArmyUnits(0);
+        System.out.println("3arekny After ta3del");
          xx.setNoOfUnits(5);
         int u = xx.getNoOfUnits();
         System.out.println(u);
