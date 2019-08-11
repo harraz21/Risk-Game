@@ -23,15 +23,15 @@ public class Maps {
     }
 
 
-    public void loadCityPixelsList() {
+    public void loadCityPixelsList(int width ,int height) {
         for (int i = 0; i < EgyptCities.citiesList.length; i++) {
             ArrayList<Pair<Integer, Integer>> arrayList = new ArrayList<>();
             cityPixelsList.put(i, arrayList);
         }
-        Image colouredMap = new Image("file:res/Maps_Images/EgyptColouredMap.png");
+
+        Image colouredMap = new Image("file:res/Maps_Images/EgyptColouredMap.png",width,height,false,true);
         PixelReader pixelReader = colouredMap.getPixelReader();
-        int width = 337;
-        int height = 300;
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Pair<Integer, Integer> pair = new Pair<>(x * 4, y * 3);

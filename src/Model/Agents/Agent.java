@@ -10,12 +10,16 @@ public class Agent implements Cloneable {
     private int noOfArmyUnits;
     private int noOfUnitsAvailable;
     private String playerName;
-
+    private Agent opponent;
     public Agent(){
         territoriesOccuopied = new ArrayList<Territory>();
     }
     public ArrayList<Territory> getTerritoriesOccuopied() {
         return territoriesOccuopied;
+    }
+
+    public void setOpponent(Agent opponent) {
+        this.opponent = opponent;
     }
 
     public void setTerritoriesOccuopied(ArrayList<Territory> territoriesOccuopied) {
@@ -49,6 +53,17 @@ public class Agent implements Cloneable {
        ArrayList<Territory> newTerritories = new ArrayList<>();
         for (Territory territory:territoriesOccuopied) {
             newTerritories.add((Territory) territory.clone());
+        }
+        for (Territory x:
+             territoriesOccuopied) {
+            for (Territory y:
+                 territoriesOccuopied) {
+                if (x.isNeighbor(y)){
+                    Territory.neighbor(newTerritories.get(territoriesOccuopied.indexOf(x))
+                            ,newTerritories.get(territoriesOccuopied.indexOf(y))) ;
+                }
+            }
+
         }
         Agent newAgent= new Agent();
         newAgent.setNoOfArmyUnits(noOfArmyUnits);

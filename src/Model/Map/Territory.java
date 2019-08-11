@@ -32,6 +32,7 @@ public class Territory implements Cloneable {
 
         if ((adjacent.getDefender() != this.getDefender())||(adjacent.getDefender()==null)){
             //attack Territory
+            System.out.println("moved "+ this.getArmyUnits().getNoOfUnits());
             attack(this.getArmyUnits(),this.getDefender());
         }else {
             adjacent.addSoldiers(num-1);
@@ -110,13 +111,27 @@ public class Territory implements Cloneable {
     public void setNeighboringTerritories(ArrayList<Territory> neighboringTerritories) {
         this.neighboringTerritories = neighboringTerritories;
     }
-
-
+    public void addNeigbor(Territory neighboringTerritory){
+        if (!this.neighboringTerritories.contains(neighboringTerritory))
+          this.neighboringTerritories.add(neighboringTerritory);
+        System.out.println(this.neighboringTerritories.size());
+    }
+    public static void neighbor(Territory A,Territory B){
+        A.addNeigbor(B);
+        B.addNeigbor(A);
+    }
+    public boolean isNeighbor(Territory A){
+        if (this.neighboringTerritories.contains(A)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
     public Object clone() throws CloneNotSupportedException {
         Territory newTerritory = new Territory(defender, armyUnits);
         ArrayList<Territory> newNeighbours = new ArrayList<>();
         for (Territory territory : neighboringTerritories) {
-            newNeighbours.add((Territory) territory.clone());
+            //newNeighbours.add((Territory) territory.clone());
         }
         newTerritory.setNeighboringTerritories(newNeighbours);
         return newTerritory;

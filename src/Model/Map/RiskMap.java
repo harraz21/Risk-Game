@@ -1,5 +1,7 @@
 package Model.Map;
 
+import Model.Agents.Agent;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,9 +10,16 @@ public class RiskMap implements Cloneable{
     HashMap<Territory, String> myTerritories = new HashMap<Territory, String>();
     HashMap<Territory, String> armies = new HashMap<Territory, String>();
 
-
+    private ArrayList<Agent> Players = new ArrayList<Agent>();
     public RiskMap(){
 
+        territories = new ArrayList<Territory>();
+    }
+    public RiskMap(Agent A, Agent B){
+        Players.add(A);
+        Players.add(B);
+        A.setOpponent(B);
+        B.setOpponent(A);
         territories = new ArrayList<Territory>();
     }
     public Object clone() throws  CloneNotSupportedException
@@ -19,6 +28,7 @@ public class RiskMap implements Cloneable{
         for (Territory territory : territories) {
             territoryArrayList.add((Territory) territory.clone());
         }
+
         RiskMap newRiskMap = new RiskMap();
         newRiskMap.setTerritories(territoryArrayList);
         return newRiskMap;

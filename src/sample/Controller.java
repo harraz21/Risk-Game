@@ -20,15 +20,17 @@ public class Controller implements Initializable {
     @FXML
     private Canvas myCanvas;
     Maps map;
-    Image country = new Image("file:res/Maps_Images/EgyptMap.png");
-    Image colouredCountry = new Image("file:res/Maps_Images/EgyptColouredMap.png");
+    int w= 200;
+    int l = 178;
+    Image country = (new Image("file:res/Maps_Images/EgyptMap.png",w,l,false,true));
+    Image colouredCountry = new Image("file:res/Maps_Images/EgyptColouredMap.png",w,l,false,true);
     Boolean aBoolean = false;
 
     public void initialize(URL url, ResourceBundle rb) {
         map = new Maps();
-        map.loadCityPixelsList();
-        myCanvas.getGraphicsContext2D().drawImage(country, 0, 0, 337, 300, 0, 0, 337 * 4, 300 * 3);
-
+        map.loadCityPixelsList(w,l);
+        myCanvas.getGraphicsContext2D().drawImage(country, 0, 0, w, l, 0, 0, w * 4, l * 3);
+        //        myCanvas.getGraphicsContext2D().drawImage(country, 0, 0, 337, 300, 0, 0, 337 * 4, 300 * 3);
     }
 
 

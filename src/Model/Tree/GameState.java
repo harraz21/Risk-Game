@@ -6,7 +6,7 @@ import Model.Map.Territory;
 
 import java.util.ArrayList;
 
-public class GameState {
+public class GameState implements Cloneable{
     private RiskMap currentRiskMap;
 
 
@@ -31,5 +31,12 @@ public class GameState {
             }
         }
         return agents;
+    }
+    public Object clone() throws  CloneNotSupportedException
+    {
+
+        RiskMap newRiskMap =  new RiskMap();
+        newRiskMap.setTerritories(( (RiskMap) currentRiskMap.clone()).getTerritories());
+        return new GameState(newRiskMap);
     }
 }
