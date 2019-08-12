@@ -92,25 +92,11 @@ public class Agent implements Cloneable {
     }
     public Object clone() throws  CloneNotSupportedException
     {
-       ArrayList<Territory> newTerritories = new ArrayList<>();
-        for (Territory territory:territoriesOccuopied) {
-            newTerritories.add((Territory) territory.clone());
-        }
-        for (Territory x:
-             territoriesOccuopied) {
-            for (Territory y:
-                 territoriesOccuopied) {
-                if (x.isNeighbor(y)){
-                    Territory.neighbor(newTerritories.get(territoriesOccuopied.indexOf(x))
-                            ,newTerritories.get(territoriesOccuopied.indexOf(y))) ;
-                }
-            }
 
-        }
         Agent newAgent= new Agent();
         newAgent.setNoOfArmyUnits(noOfArmyUnits);
         newAgent.setNoOfArmyUnits(noOfUnitsAvailable);
-        newAgent.setTerritoriesOccuopied(newTerritories);
+       // newAgent.setTerritoriesOccuopied(newTerritories);
         return newAgent;
     }
 }

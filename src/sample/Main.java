@@ -6,6 +6,7 @@ import Model.Agents.*;
 import Model.Map.RiskMap;
 
 import Model.Map.Territory;
+import Model.Tree.GameState;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -47,9 +48,12 @@ public class Main extends Application {
        // Territory.neighbor(myTerritoryB,myTerritoryD);
         //Territory.neighbor(myTerritoryA,myTerritoryC);
 
-        myMap.getPlayers().get(0).setNoOfUnitsAvaliable(20);
+        myMap.getPlayers().get(0).setNoOfUnitsAvaliable(10);
         myMap.getPlayers().get(1).setNoOfUnitsAvaliable(15);
-        myMap.print();
+        Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
+        myNode.generateChildren(A);
+        //myMap.print();
+        /*
         int current = 0;
         while (!myMap.isGoal()){
             System.out.println(current);
@@ -58,15 +62,14 @@ public class Main extends Application {
             myMap.getPlayers().get(current).updateUnitsAvaliable();
             myMap.print();
             current = current ==0 ? 1:0;
-        }
+        }*/
         System.out.println("Enddd");
 
 
-       // Model.Tree.Node myNode = new Model.Tree.Node(new GameState(myMap));
-       // myNode.generateChildren(A);
+
         //System.out.println("Enter C");
 
-        launch(args);
+        //launch(args);
         /*Attackagent cc = new Attackagent();
         Territory myTerritoryForAttacker =new Territory(cc, new ArmyUnits(10));
         myMap.addTerritory(new Territory(cc, new ArmyUnits(5)));

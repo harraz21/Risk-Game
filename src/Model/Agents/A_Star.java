@@ -1,9 +1,6 @@
 package Model.Agents;
 
-import Model.Tree.GameState;
-import Model.Tree.GreedyNode;
-import Model.Tree.Heuristic;
-import Model.Tree.Node;
+import Model.Tree.*;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
@@ -21,11 +18,10 @@ public class A_Star extends Agent {
         private ArrayList<GreedyNode> explored;
         private ArrayList<Node> path;
         private int pathCost;
-        private Agent myAgent;
 
-        public A_Star(Agent myAgent, Heuristic heuristicType) {
-            this.myAgent = myAgent;
-            this.heuristicType = heuristicType;
+        public A_Star() {
+
+            this.heuristicType = new Franz_Hahn();
         }
 
 
@@ -45,7 +41,7 @@ public class A_Star extends Agent {
                     pathCost=state.getCost();
                     return pathToGoal(state);
                 }
-                state.generateChildren(myAgent);
+                state.generateChildren(this);
                 for (Node node : state.getChildren()) {
                     if (node != null) {
                         node = new GreedyNode(node.getState(), state);

@@ -55,7 +55,7 @@ public class Node  {
 
     private void moveTile(Agent cAgent) throws CloneNotSupportedException {
         //Move
-        ArrayList<Node> newChildren = new ArrayList<>(Arrays.asList(new Node[4]));
+        ArrayList<Node> newChildren = new ArrayList<>();
 
         Agent i = cAgent;
         int index = state.getAgents().indexOf(i);
@@ -72,7 +72,7 @@ public class Node  {
                     n /= 10;
                 }
 
-                if (sum > i.getNoOfUnitsAvaliable()){
+                if ((sum > i.getNoOfUnitsAvaliable())||sum <i.getNoOfUnitsAvaliable() ){
                     continue;
                 }
                 sum = j;
@@ -89,7 +89,8 @@ public class Node  {
                 Agent myAgent = newState.getAgents().get(state.getAgents().indexOf(i)) ;
                 for (Territory x:
                      myAgent.getTerritoriesOccuopied()) {
-                    x.addSoldiers(new ArmyUnits((int)(sum%10)),myAgent);
+                    x.addSoldiers((int)(sum%10));
+                    newState.getCurrentRiskMap().print();
                     sum /=10;
                 }
 
@@ -97,56 +98,19 @@ public class Node  {
                 System.out.println("placing Size "+ newChildren.size());
             }
             //don't over analyze it
-        for (Node x:
-             newChildren) {
-            System.out.println("here");
-            if (x == null){
-                continue;
-            }
-            System.out.println("there");
 
-            GameState s = x.getState();
-            Agent ss = s.getAgents().get(index);
-            Territory yy = ss.getTerritoriesOccuopied().get(0);
-            GameState a = new GameState((RiskMap) x.getState().getCurrentRiskMap().clone());
-            System.out.println(" a has " + a.getCurrentRiskMap().getTerritories().size()
-                                + " is "+ a.getCurrentRiskMap());
-           for (Territory y:a.getAgents().get(index).getTerritoriesOccuopied()) {
-                for (Territory z:
-                     y.getNeighboringTerritories()) {
-                        y.move(z);//attack or move the whole army
-                        children.add(new Node(a));
-                }
-            }
-        }
 
         for (Node a:
-             children) {
-            System.out.println("          ++++++      ");
+             newChildren) {
             if (a == null){
                 continue;
             }
-            for (Territory x:
-                 a.getState().getCurrentRiskMap().getTerritories()) {
-                System.out.println(x+ "  "+ x.getArmyUnits().getNoOfUnits());
-            }
+            a.getState().getCurrentRiskMap().print();
         }
         System.out.println("size of children  " + newChildren.size());
-        if (parent != null) {
-            for (Node newChild : newChildren) {
-                if (newChild != null) {
-                    if (!newChild.getState().equals(parent.getState())) {
-                        children.set(newChildren.indexOf(newChild), newChild);
-                    }
-                }
-            }
-        }else {
-            for (Node newChild : newChildren) {
-                if (newChild != null) {
-                    children.add( newChild);
-                }
-            }
-        }
+
+
+
         //System.out.println("Size of Children is " + children.size());
     }
 

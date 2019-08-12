@@ -1,6 +1,8 @@
 package sample;
 
 import Model.Agents.Agent;
+import Model.Agents.Aggressive;
+import Model.Agents.Human;
 import Model.Agents.Pacifist;
 import Model.Map.RiskMap;
 import Model.Map.Territory;
@@ -19,6 +21,7 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 
@@ -32,6 +35,7 @@ public class Controller implements Initializable {
     static int selectCountry = 0;
     @FXML
     private ListView<String> cityList;
+    static int turn = 0;
 
     static boolean once = false;
 
@@ -47,7 +51,7 @@ public class Controller implements Initializable {
         //        myCanvas.getGraphicsContext2D().drawImage(country, 0, 0, 337, 300, 0, 0, 337 * 4, 300 * 3);
         if (url.getPath().contains("sample")){
             if (!once){
-                Agent A  = new Pacifist();
+                Agent A  = new Aggressive();
                 Agent B = new Pacifist();
                 myMap = new RiskMap(A,B);
                 loadEgypt();
@@ -123,12 +127,25 @@ public class Controller implements Initializable {
             }
         }
 
+        for (Territory x:
+             myMap.getTerritories()) {
+            x.setDefender(myMap.getPlayers().get( (new Random()).nextInt(2)));
+        }
+
 
     }
     public void nextTurn(ActionEvent mouseEvent){
+        turn++;
+        myMap.getPlayers().get(turn%2).play(myMap);
+        myMap.getPlayers().get(turn%2).updateUnitsAvaliable();
+
         update();
     }
     public void update(){
+        if (myMap.isGoal()){
+            System.out.println("GOAL Reached");
+        }
+
         cityList.getItems().clear();
         String ss = String.format("%-16.16s |  Player  | Army","City");
         cityList.getItems().add(ss);
@@ -136,13 +153,26 @@ public class Controller implements Initializable {
         for (int i = 0; i < 26; i++) {
 
             String s = String.format("%-16.16s | Player %1d | %4d", EgyptCities.citiesList[i],
-                    myMap.getPlayers().indexOf(myMap.getTerritories().get(i))+1,
+                    myMap.getPlayers().indexOf(myMap.getTerritories().get(i).getDefender())+1,
                     myMap.getTerritories().get(i).getArmyUnits().getNoOfUnits());
             cityList.getItems().add(s);
         }
-
+        for (int i = 0; i < 26; i++) {
+            Color myColor;
+            int index = myMap.getPlayers().indexOf (myMap.getTerritories().get(i).getDefender());
+            if (index == 0){
+                myColor = Color.RED;
+            }else if (index ==1){
+                myColor = Color.YELLOW;
+            }else {
+                myColor = Color.CYAN;
+            }
+            map.ColourAcity(myCanvas,i,myColor);
+        }
+        myMap.print();
     }
     public void onMousePressed(MouseEvent mouseEvent) {
+        /*
         if (colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3) != null) {
             if (EgyptCities.isAcity(colouredCountry.getPixelReader().getColor((int) mouseEvent.getX()/4 , (int) mouseEvent.getY() / 3))) {
                 if (aBoolean) {
@@ -152,6 +182,17 @@ public class Controller implements Initializable {
                     map.ColourAcity(myCanvas, EgyptCities.getCity(colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3)), Color.RED);
                     aBoolean  =  true;
                 }
+            }
+        }
+        */
+        if (colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3) != null) {
+            if (EgyptCities.isAcity(colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3))) {
+                int cityindex = EgyptCities.getCity(colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3));
+
+                if (myMap.getTerritories().get(cityindex).getDefender() instanceof Human)
+                    map.ColourAcity(myCanvas, cityindex, Color.GREEN);
+
+
             }
         }
     }

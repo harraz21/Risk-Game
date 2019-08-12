@@ -142,6 +142,7 @@ public class Territory implements Cloneable {
     }
     public Object clone() throws CloneNotSupportedException {
         Territory newTerritory = new Territory(defender, armyUnits);
+        newTerritory.setArmyUnits(new ArmyUnits(this.armyUnits.getNoOfUnits()));
         ArrayList<Territory> newNeighbours = new ArrayList<>();
         for (Territory territory : neighboringTerritories) {
             //newNeighbours.add((Territory) territory.clone());
