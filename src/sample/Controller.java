@@ -10,19 +10,27 @@ import Model.MapLoading.EgyptCities;
 import Model.MapLoading.Maps;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+import static sample.Main.primarystage;
 
 
 public class Controller implements Initializable {
@@ -36,8 +44,8 @@ public class Controller implements Initializable {
     @FXML
     private ListView<String> cityList;
     static int turn = 0;
-
-    static boolean once = false;
+    static Territory source = null;
+    static Territory destination = null;
 
     Image country = (new Image("file:res/Maps_Images/EgyptMap.png",w,l,false,true));
     Image colouredCountry = new Image("file:res/Maps_Images/EgyptColouredMap.png",w,l,false,true);
@@ -50,12 +58,13 @@ public class Controller implements Initializable {
         myCanvas.getGraphicsContext2D().drawImage(country, 0, 0, w, l, 0, 0, w * 4, l * 3);
         //        myCanvas.getGraphicsContext2D().drawImage(country, 0, 0, 337, 300, 0, 0, 337 * 4, 300 * 3);
         if (url.getPath().contains("sample")){
-            if (!once){
-                Agent A  = new Aggressive();
-                Agent B = new Pacifist();
+            if (!Message.once){
+
+                Agent A  = Message.Player1;
+                Agent B = Message.Player2;
                 myMap = new RiskMap(A,B);
                 loadEgypt();
-                once = true;
+                Message.once = true;
             }
         }
     }
@@ -134,12 +143,33 @@ public class Controller implements Initializable {
 
 
     }
+    @FXML
+    private Label unitsAvailable;
+
+    @FXML
+    private TextField numberOfUnits;
+
+    @FXML
+    private Label playerTurn;
+
+    @FXML
+    private Label turns;
+
     public void nextTurn(ActionEvent mouseEvent){
-        turn++;
+
         myMap.getPlayers().get(turn%2).play(myMap);
+        if (myMap.getPlayers().get(turn%2).getNoOfUnitsAvaliable()>0){
+            System.out.println("Please Place All units");
+            return;
+        }
+        turn++;
+
         myMap.getPlayers().get(turn%2).updateUnitsAvaliable();
 
+        updateIndex();
         update();
+        source = destination= null;
+
     }
     public void update(){
         if (myMap.isGoal()){
@@ -157,6 +187,16 @@ public class Controller implements Initializable {
                     myMap.getTerritories().get(i).getArmyUnits().getNoOfUnits());
             cityList.getItems().add(s);
         }
+        updateColors();
+        myMap.print();
+    }
+    void updateIndex(){
+        unitsAvailable.setText(Integer.toString(myMap.getPlayers().get(turn%2)
+                .getNoOfUnitsAvaliable()));
+        turns.setText(Integer.toString(turn));
+        playerTurn.setText(Integer.toString(turn%2));
+    }
+    void updateColors(){
         for (int i = 0; i < 26; i++) {
             Color myColor;
             int index = myMap.getPlayers().indexOf (myMap.getTerritories().get(i).getDefender());
@@ -169,7 +209,6 @@ public class Controller implements Initializable {
             }
             map.ColourAcity(myCanvas,i,myColor);
         }
-        myMap.print();
     }
     public void onMousePressed(MouseEvent mouseEvent) {
         /*
@@ -185,15 +224,56 @@ public class Controller implements Initializable {
             }
         }
         */
-        if (colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3) != null) {
-            if (EgyptCities.isAcity(colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3))) {
-                int cityindex = EgyptCities.getCity(colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3));
+        if ((turn %2)==0){
+            if (colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3) != null) {
+                if (EgyptCities.isAcity(colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3))) {
+                    int cityindex = EgyptCities.getCity(colouredCountry.getPixelReader().getColor((int) mouseEvent.getX() / 4, (int) mouseEvent.getY() / 3));
 
-                if (myMap.getTerritories().get(cityindex).getDefender() instanceof Human)
-                    map.ColourAcity(myCanvas, cityindex, Color.GREEN);
+                    if (myMap.getTerritories().get(cityindex).getDefender() instanceof Human) {
+                        if (myMap.getTerritories().get(cityindex).getDefender().getNoOfUnitsAvaliable() > 0) {
+                            myMap.getTerritories().get(cityindex).addSoldiers(1);
+                            myMap.getTerritories().get(cityindex).getDefender().setNoOfUnitsAvaliable(
+                                    myMap.getTerritories().get(cityindex).getDefender()
+                                            .getNoOfUnitsAvaliable() - 1);
+                            updateIndex();
+                            return;
+                        }
+                    }
+                    if (source == null) {
+                        if (myMap.getTerritories().get(cityindex).getDefender() instanceof Human) {
+                            map.ColourAcity(myCanvas, cityindex, Color.GREEN);
+                            source = myMap.getTerritories().get(cityindex);
+                        }
+                    }else {
+                        if (destination == null){
+                            if (myMap.getTerritories().get(cityindex).isNeighbor(source)) {
+                                map.ColourAcity(myCanvas, cityindex, Color.BLUE);
+                                destination = myMap.getTerritories().get(cityindex);
+                            }
+                        }
+                    }
 
 
+                }
             }
         }
+
+    }
+
+    @FXML
+    void move(ActionEvent event) {
+        if ((source!=null) && (destination!=null)){
+            source.move(destination);
+            System.out.println("moved");
+            source = destination= null;
+            updateColors();
+        }
+    }
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("startingScene.fxml"));
+        primarystage.setTitle("Risk Game");
+        primarystage.setScene(new Scene(root));//, 300, 275));
+        primarystage.show();
     }
 }

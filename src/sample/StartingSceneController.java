@@ -1,5 +1,9 @@
 package sample;
 
+import Model.Agents.Aggressive;
+import Model.Agents.Human;
+import Model.Agents.Pacifist;
+import Model.Agents.Passive;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -48,16 +52,17 @@ public class StartingSceneController implements Initializable {
         String map = (String) mapComboBox.getValue();
         switch (firstAgent) {
             case "Human Agent":
-                //write your code here
+                Message.Player1 = new Human();
+
                 break;
             case "Passive Agent":
-                //write your code here
+                Message.Player1 = new Passive();
                 break;
             case "Aggressive Agent":
-                //write your code here
+                Message.Player1 = new Aggressive();
                 break;
             case "Pacifist Agent":
-                //write your code here
+                Message.Player1 = new Pacifist();
                 break;
             case "Greedy Agent":
                 //write your code here
@@ -77,16 +82,17 @@ public class StartingSceneController implements Initializable {
         }
         switch (secondAgent) {
             case "Human Agent":
-                //write your code here
+                System.out.println("Dont choose human as player 2 !");
+                Message.Player2 = new Human();
                 break;
             case "Passive Agent":
-                //write your code here
+                Message.Player2 = new Passive();
                 break;
             case "Aggressive Agent":
-                //write your code here
+                Message.Player2 = new Aggressive();
                 break;
             case "Pacifist Agent":
-                //write your code here
+                Message.Player2 = new Pacifist();
                 break;
             case "Greedy Agent":
                 //write your code here
@@ -107,18 +113,20 @@ public class StartingSceneController implements Initializable {
 
         switch (map) {
             case "Egypt":
-                //write your code here
+                Message.isEgypt = true;
                 break;
             case "USA":
-                //write your code here
+                Message.isEgypt = false;
                 break;
             default:
                 //write your code here
                 break;
         }
+        Message.once = false;
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primarystage.setTitle("Risk Game");
         primarystage.setScene(new Scene(root));//, 300, 275));
         primarystage.show();
+
     }
 }

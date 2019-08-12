@@ -38,14 +38,13 @@ public class Territory implements Cloneable {
         if (num<2){
             return;
         }
-
-        if ((adjacent.getDefender() != this.getDefender())||(adjacent.getDefender()==null)){
-            //attack Territory
-            System.out.println("moved "+ this.getArmyUnits().getNoOfUnits());
-            attack(this.getArmyUnits(),this.getDefender());
+        if (adjacent.getDefender() != this.getDefender()){
+            adjacent.attack(this.removeArmies(this.getArmyUnits().getNoOfUnits()-1)
+                    ,this.getDefender());
         }else {
-            adjacent.addSoldiers(num-1);
-            this.removeArmies(num);
+            System.out.println("moved "+(this.getArmyUnits().getNoOfUnits()-1));
+            adjacent.addSoldiers(this.removeArmies
+                    (this.getArmyUnits().getNoOfUnits()-1).getNoOfUnits());
         }
     }
     public void attack(ArmyUnits armyUnits, Agent attacker) {
