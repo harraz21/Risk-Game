@@ -64,7 +64,7 @@ public class Main extends Application {
        // myNode.generateChildren(A);
         //System.out.println("Enter C");
 
-        //launch(args);
+        launch(args);
         /*Attackagent cc = new Attackagent();
         Territory myTerritoryForAttacker =new Territory(cc, new ArmyUnits(10));
         myMap.addTerritory(new Territory(cc, new ArmyUnits(5)));

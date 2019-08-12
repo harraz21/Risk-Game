@@ -38,6 +38,10 @@ public class EgyptCities {
     public static String[] citiesList = new String[26];
     public static HashMap<Integer, ArrayList<Integer>> adjacencyList;
 
+    public static HashMap<Integer, ArrayList<Integer>> getAdjacencyList() {
+        return adjacencyList;
+    }
+
     public static void loadAdjacencyList() {
         adjacencyList = new HashMap<>();
         ArrayList<Integer> buffer = new ArrayList<>();

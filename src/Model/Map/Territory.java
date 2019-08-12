@@ -12,9 +12,19 @@ public class Territory implements Cloneable {
     private Agent defender;
     private Agent attacker;
     public ArmyUnits armyUnits;
-    private ArrayList<Territory> neighboringTerritories;
+    private ArrayList<Territory> neighboringTerritories=new ArrayList<Territory>();
 
-
+    public Territory(){
+        this.armyUnits = new ArmyUnits(0);
+    }
+    public Territory(Agent defender, int nu) {
+        this.defender = defender;
+        if (this.defender != null)
+        {
+            this.defender.getTerritoriesOccuopied().add(this);
+        }
+        this.armyUnits = new ArmyUnits(nu);
+    }
     public Territory(Agent defender, ArmyUnits armyUnits) {
         this.defender = defender;
         if (this.defender != null)
@@ -22,7 +32,6 @@ public class Territory implements Cloneable {
             this.defender.getTerritoriesOccuopied().add(this);
         }
         this.armyUnits = armyUnits;
-        neighboringTerritories = new ArrayList<Territory>();
     }
     public void move(Territory adjacent){
         int num = this.armyUnits.getNoOfUnits();
@@ -95,6 +104,9 @@ public class Territory implements Cloneable {
 
     public void setDefender(Agent defender) {
         this.defender = defender;
+        if(!this.defender.getTerritoriesOccuopied().contains(this)){
+            this.defender.getTerritoriesOccuopied().add(this);
+        }
     }
 
 
@@ -116,7 +128,6 @@ public class Territory implements Cloneable {
     public void addNeigbor(Territory neighboringTerritory){
         if (!this.neighboringTerritories.contains(neighboringTerritory))
           this.neighboringTerritories.add(neighboringTerritory);
-        System.out.println(this.neighboringTerritories.size());
     }
     public static void neighbor(Territory A,Territory B){
         A.addNeigbor(B);
