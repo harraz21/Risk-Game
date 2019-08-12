@@ -13,9 +13,9 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <ComboBox fx:id="firstAgentComboBox" layoutX="179.0" layoutY="108.0" prefWidth="150.0" promptText="First Agent" />
-      <ComboBox fx:id="secondAgentComboBox" layoutX="179.0" layoutY="181.0" prefWidth="150.0" promptText="Second Agent" />
-      <ComboBox fx:id="mapComboBox" layoutX="179.0" layoutY="284.0" prefWidth="150.0" />
+      <ComboBox fx:id="firstAgentComboBox" layoutX="179.0" layoutY="108.0" prefWidth="150.0" promptText="First Agent" visibleRowCount="8" />
+      <ComboBox fx:id="secondAgentComboBox" layoutX="179.0" layoutY="181.0" prefWidth="150.0" promptText="Second Agent" visibleRowCount="8" />
+      <ComboBox fx:id="mapComboBox" layoutX="179.0" layoutY="284.0" prefWidth="150.0" promptText="Egypt" visibleRowCount="2" />
       <Label layoutX="127.0" layoutY="75.0" prefHeight="17.0" prefWidth="120.0" text="First Agent:" textFill="#1a0ac6" AnchorPane.leftAnchor="127.0">
          <font>
             <Font name="Calibri Light Italic" size="18.0" />
