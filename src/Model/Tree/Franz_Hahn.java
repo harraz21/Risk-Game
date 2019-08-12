@@ -61,7 +61,7 @@ public class Franz_Hahn implements Heuristic {
         sizearmy = 0;
 
         Agent B = myAgent.getOpponent();
-        score -= B.getTerritoriesOccuopied().size()*5;
+        score -= B.getTerritoriesOccuopied().size()*10;
         for (Territory a:
                 A.getTerritoriesOccuopied()) {
             sizearmy += a.getArmyUnits().getNoOfUnits();

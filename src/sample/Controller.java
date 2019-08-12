@@ -63,8 +63,8 @@ public class Controller implements Initializable {
                 Agent A  = Message.Player1;
                 Agent B = Message.Player2;
                 myMap = new RiskMap(A,B);
-                place();
                 loadEgypt();
+
                 Message.once = true;
             }
         }
@@ -149,6 +149,7 @@ public class Controller implements Initializable {
              myMap.getTerritories()) {
             x.setDefender(myMap.getPlayers().get( (new Random()).nextInt(2)));
         }
+        place();
 
         updateIndex();
         update();
@@ -190,7 +191,7 @@ public class Controller implements Initializable {
     }
     @FXML
     void next100Turn(ActionEvent event) {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             nextTurn(event);
         }
     }

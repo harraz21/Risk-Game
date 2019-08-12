@@ -90,7 +90,12 @@ public class Agent implements Cloneable {
                                     return  ((A_Star_Realtime)this).play(myMap);
 
                                 }catch (Exception g){
-                                    g.printStackTrace();
+                                    try {
+                                        return  ((Minimax)this).play(myMap);
+
+                                    }catch (Exception h){
+                                        g.printStackTrace();
+                                    }
                                 }
                             }
                         }
@@ -118,6 +123,8 @@ public class Agent implements Cloneable {
             newAgent = new A_Star();
         }else if (this instanceof A_Star_Realtime){
             newAgent = new A_Star_Realtime();
+        }else if (this instanceof Minimax){
+            newAgent = new Minimax();
         }else{
             System.out.println("Something is wrong");
         }

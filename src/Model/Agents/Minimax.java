@@ -1,50 +1,81 @@
 package Model.Agents;
 
 import Model.Map.RiskMap;
+import Model.Tree.Franz_Hahn;
 import Model.Tree.GameState;
+import Model.Tree.Node;
 import javafx.util.Pair;
 import utility.Utility;
 
-public class Minimax {
+import java.util.ArrayList;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
+public class Minimax  extends Agent{
+
+
+
+
+    public  RiskMap play (RiskMap myMap){
+        Pair<GameState, Integer> result = minMaxDecision(
+          new GameState(myMap),4,Integer.MIN_VALUE,Integer.MAX_VALUE,true
+        );
+
+        return result.getKey().getCurrentRiskMap();
+    }
     public Pair<GameState, Integer> minMaxDecision(GameState position, int depth, int alpha, int beta, boolean maximizingAgent) {
         if (depth == 0 /**  || game is over**/) {
-            Pair<GameState, Integer> pair = new Pair<>(position, Utility.eval(position));
-
+            Pair<GameState, Integer> pair = new Pair<GameState, Integer>(position,(int)(new Franz_Hahn()).getHeuristic(position));
             return pair;
         }
+        Node myNode = new Node(position);
+        GameState myGameState = null;
+        //fix this laterrr
+        int index = position.getCurrentRiskMap().getPlayers().indexOf(this);
+        myNode.generateChildren(((myNode.getDepth()%2)==0) ?
+                myNode.getState().getAgents().get(index) : myNode.getState().getAgents().get(index).getOpponent());
+        ArrayList<Node> list = myNode.getChildren();
 
         if (maximizingAgent) {
             int maxEval = Integer.MIN_VALUE;
-            /**for (: child for position  ) {
-             int eval = minMaxDecision(child,depth-1,false);
-             maxEval = max(maxEval,eval)
-             alpha = max(alpha,eval)
-             if (beta <= alpha)
-             {
-             break;
+            for (Node a :list ) {
+
+                Pair<GameState, Integer>  m = minMaxDecision(a.getState(),depth-1,alpha,beta,false);
+                int eval = m.getValue();
+                 maxEval = max(maxEval,eval);
+                 if (maxEval == eval){
+                     myGameState = m.getKey();
+                 }
+                 alpha = max(alpha,eval);
+                 if (beta <= alpha){
+                     break;
+                 }
              }
-             }
-             return the value and the last gamestate returned that value
-             **/
+             return new Pair<GameState, Integer>(myGameState,maxEval);
+
         } else {
             int minEval = Integer.MAX_VALUE;
-            /**
-             * foreach child
-             * {
-             * eval = minimax(child ,depth-1,true)
-             * minEval = min(minEval,eval)
-             * beta = min(beta,eval)
-             * if (beta <= alpha)
-             *    {
-             *           break;
-             *    }
-             * }
-             *
-             * return the value and the last gamestate returned that value
-             * **/
+
+             for (Node a :list ) {
+
+                 Pair<GameState, Integer>  m = minMaxDecision(a.getState(),depth-1,alpha,beta,true);
+                 int eval = m.getValue();
+
+                 minEval = min(minEval,eval) ;
+                 if (minEval == eval){
+                     myGameState = m.getKey();
+                 }
+                   beta = min(beta,eval);
+              if (beta <= alpha)
+                 {
+                        break;
+                 }
+              }
+
+            return new Pair<GameState, Integer>(myGameState,minEval);
         }
-        //temporary
-        return null;
+
     }
 
 
