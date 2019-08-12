@@ -81,13 +81,25 @@ public class Node  {
                 }
                 GameState newState = new GameState(newRiskMap);
                 int x = sum;
+                int flag = 0;
                 while (x >0){
-                    newRiskMap.getPlayers().get(index).getTerritoriesOccuopied().
-                            get((new Random().nextInt
-                                    (newRiskMap.getPlayers().get(index)
-                                            .getTerritoriesOccuopied().size())))
-                            .addSoldiers(1);
+                    try {
+                        newRiskMap.getPlayers().get(index).getTerritoriesOccuopied().
+                                get((new Random().nextInt
+                                        (newRiskMap.getPlayers().get(index)
+                                                .getTerritoriesOccuopied().size())))
+                                .addSoldiers(1);
+                    }catch (Exception e){
+                        System.out.println("Game Won");
+                        e.printStackTrace();
+                        flag = 1;
+                        break;
+                    }
+
                     x--;
+                }
+                if (flag ==1){
+                    continue;
                 }
                 newChildren.add(new Node(newState));
                // System.out.println("placing Size "+ newChildren.size());

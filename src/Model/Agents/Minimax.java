@@ -19,7 +19,7 @@ public class Minimax  extends Agent{
 
     public  RiskMap play (RiskMap myMap){
         Pair<GameState, Integer> result = minMaxDecision(
-          new GameState(myMap),3,Integer.MIN_VALUE,Integer.MAX_VALUE,true
+          new GameState(myMap),2,Integer.MIN_VALUE,Integer.MAX_VALUE,true
         ,myMap.getPlayers().indexOf(this));
 
         return result.getKey().getCurrentRiskMap();

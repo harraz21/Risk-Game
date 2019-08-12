@@ -56,7 +56,7 @@ public class Controller implements Initializable {
         //        myCanvas.getGraphicsContext2D().drawImage(country, 0, 0, 337, 300, 0, 0, 337 * 4, 300 * 3);
         if (url.getPath().contains("sample")){
             if (!Message.once){
-
+                turn = 0;
                 Agent A  = Message.Player1;
                 Agent B = Message.Player2;
                 myMap = new RiskMap(A,B);
