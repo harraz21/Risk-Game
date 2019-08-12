@@ -26,11 +26,11 @@ public class StartingSceneController implements Initializable {
     public ComboBox mapComboBox;
     @FXML
     public Label AlertLabel;
-    ObservableList<String> firstAgentList = FXCollections.observableArrayList("Human Agent","Passive Agent","Aggressive Agent"
-            ,"Pacifist Agent","Greedy Agent","A* Agent","Real time A* Agent","Minimax Agent");
-    ObservableList<String> secondAgentList = FXCollections.observableArrayList("Human Agent","Passive Agent","Aggressive Agent"
-            ,"Pacifist Agent","Greedy Agent","A* Agent","Real time A* Agent","Minimax Agent");
-    ObservableList<String> mapList = FXCollections.observableArrayList("Egypt","USA");
+    ObservableList<String> firstAgentList = FXCollections.observableArrayList("Human Agent", "Passive Agent", "Aggressive Agent"
+            , "Pacifist Agent", "Greedy Agent", "A* Agent", "Real time A* Agent", "Minimax Agent");
+    ObservableList<String> secondAgentList = FXCollections.observableArrayList("Human Agent", "Passive Agent", "Aggressive Agent"
+            , "Pacifist Agent", "Greedy Agent", "A* Agent", "Real time A* Agent", "Minimax Agent");
+    ObservableList<String> mapList = FXCollections.observableArrayList("Egypt", "USA");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -43,6 +43,79 @@ public class StartingSceneController implements Initializable {
     }
 
     public void startButtonOnAction(ActionEvent actionEvent) throws IOException {
+        String firstAgent = (String) firstAgentComboBox.getValue();
+        String secondAgent = (String) secondAgentComboBox.getValue();
+        String map = (String) mapComboBox.getValue();
+        switch (firstAgent) {
+            case "Human Agent":
+                //write your code here
+                break;
+            case "Passive Agent":
+                //write your code here
+                break;
+            case "Aggressive Agent":
+                //write your code here
+                break;
+            case "Pacifist Agent":
+                //write your code here
+                break;
+            case "Greedy Agent":
+                //write your code here
+                break;
+            case "A* Agent":
+                //write your code here
+                break;
+            case "Real time A* Agent":
+                //write your code here
+                break;
+            case "Minimax Agent":
+                //write your code here
+                break;
+            default:
+                //write your code here
+                break;
+        }
+        switch (secondAgent) {
+            case "Human Agent":
+                //write your code here
+                break;
+            case "Passive Agent":
+                //write your code here
+                break;
+            case "Aggressive Agent":
+                //write your code here
+                break;
+            case "Pacifist Agent":
+                //write your code here
+                break;
+            case "Greedy Agent":
+                //write your code here
+                break;
+            case "A* Agent":
+                //write your code here
+                break;
+            case "Real time A* Agent":
+                //write your code here
+                break;
+            case "Minimax Agent":
+                //write your code here
+                break;
+            default:
+                //write your code here
+                break;
+        }
+
+        switch (map) {
+            case "Egypt":
+                //write your code here
+                break;
+            case "USA":
+                //write your code here
+                break;
+            default:
+                //write your code here
+                break;
+        }
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primarystage.setTitle("Risk Game");
         primarystage.setScene(new Scene(root));//, 300, 275));
