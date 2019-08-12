@@ -11,6 +11,7 @@ import Model.Map.Territory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Random;
 
 
 public class Node  {
@@ -42,7 +43,7 @@ public class Node  {
 
     public void generateChildren(Agent myAgent) {
         //generate
-        children = new ArrayList<>(Arrays.asList(new Node[4]));
+        children = new ArrayList<>();
         int emptyTile = -1;
 
         try {
@@ -62,22 +63,14 @@ public class Node  {
             if (i == null){
                 return;
             }
-            long num =  (long)Math.pow(10, i.getTerritoriesOccuopied().size());
+            int sum = i.getNoOfUnitsAvaliable();
+            long num =  50;
             System.out.println("Started ++++++++++"+ num);
             for (long j = 0; j < num; j++) {
-                long n = j;
-                long sum = 0;
-                while (n > 0) {
-                    sum += n % 10;
-                    n /= 10;
-                }
 
-                if ((sum > i.getNoOfUnitsAvaliable())||sum <i.getNoOfUnitsAvaliable() ){
-                    continue;
-                }
-                sum = j;
-                System.out.println("num is "+sum  );
+
                 RiskMap newRiskMap = null;
+
                 try {
                     newRiskMap = (RiskMap) state.getCurrentRiskMap().clone();
                 } catch (CloneNotSupportedException e) {
@@ -85,29 +78,42 @@ public class Node  {
                     e.printStackTrace();
                 }
                 GameState newState = new GameState(newRiskMap);
-
-                Agent myAgent = newState.getAgents().get(state.getAgents().indexOf(i)) ;
-                for (Territory x:
-                     myAgent.getTerritoriesOccuopied()) {
-                    x.addSoldiers((int)(sum%10));
-                    newState.getCurrentRiskMap().print();
-                    sum /=10;
+                int x = sum;
+                while (x >0){
+                    newRiskMap.getPlayers().get(index).getTerritoriesOccuopied().
+                            get((new Random().nextInt
+                                    (newRiskMap.getPlayers().get(index)
+                                            .getTerritoriesOccuopied().size())))
+                            .addSoldiers(1);
+                    x--;
                 }
-
                 newChildren.add(new Node(newState));
                 System.out.println("placing Size "+ newChildren.size());
             }
-            //don't over analyze it
 
 
-        for (Node a:
+
+        for (Node A:
              newChildren) {
-            if (a == null){
-                continue;
+            System.out.println("ehrehrhe h");
+            RiskMap B = (RiskMap)A.getState().getCurrentRiskMap();
+            Agent C = B.getPlayers().get(index);
+
+            for (Territory D:
+                 C.getTerritoriesOccuopied()) {
+                RiskMap myClonedMap =(RiskMap) B.clone();
+                int indexofD = B.getTerritories().indexOf(D);
+               // System.out.println(D);
+                myClonedMap.getTerritories().get(indexofD)
+                        .move(myClonedMap.getTerritories().get(indexofD)
+                                .getNeighboringTerritories().get(0));
+                //myClonedMap.print();
+                children.add(new Node(new GameState(myClonedMap)));
             }
-            a.getState().getCurrentRiskMap().print();
+           // B.print();
         }
-        System.out.println("size of children  " + newChildren.size());
+
+        System.out.println("size of children  " + children.size());
 
 
 

@@ -1,9 +1,6 @@
 package sample;
 
-import Model.Agents.Aggressive;
-import Model.Agents.Human;
-import Model.Agents.Pacifist;
-import Model.Agents.Passive;
+import Model.Agents.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -65,7 +62,7 @@ public class StartingSceneController implements Initializable {
                 Message.Player1 = new Pacifist();
                 break;
             case "Greedy Agent":
-                //write your code here
+                Message.Player1 = new Greedy();
                 break;
             case "A* Agent":
                 //write your code here
@@ -95,7 +92,7 @@ public class StartingSceneController implements Initializable {
                 Message.Player2 = new Pacifist();
                 break;
             case "Greedy Agent":
-                //write your code here
+                Message.Player2 = new Greedy();
                 break;
             case "A* Agent":
                 //write your code here

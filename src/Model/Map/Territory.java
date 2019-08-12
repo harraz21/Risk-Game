@@ -2,6 +2,7 @@ package Model.Map;
 
 import Model.Agents.Agent;
 import Model.Agents.ArmyUnits.ArmyUnits;
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,9 +13,10 @@ public class Territory implements Cloneable {
     private Agent defender;
     private Agent attacker;
     public ArmyUnits armyUnits;
-    private ArrayList<Territory> neighboringTerritories=new ArrayList<Territory>();
+    private ArrayList<Territory> neighboringTerritories;
 
     public Territory(){
+        neighboringTerritories=new ArrayList<Territory>();
         this.armyUnits = new ArmyUnits(0);
     }
     public Territory(Agent defender, int nu) {
@@ -24,6 +26,7 @@ public class Territory implements Cloneable {
             this.defender.getTerritoriesOccuopied().add(this);
         }
         this.armyUnits = new ArmyUnits(nu);
+        neighboringTerritories=new ArrayList<Territory>();
     }
     public Territory(Agent defender, ArmyUnits armyUnits) {
         this.defender = defender;
@@ -32,6 +35,7 @@ public class Territory implements Cloneable {
             this.defender.getTerritoriesOccuopied().add(this);
         }
         this.armyUnits = armyUnits;
+        neighboringTerritories=new ArrayList<Territory>();
     }
     public void move(Territory adjacent){
         int num = this.armyUnits.getNoOfUnits();
@@ -124,13 +128,17 @@ public class Territory implements Cloneable {
     public void setNeighboringTerritories(ArrayList<Territory> neighboringTerritories) {
         this.neighboringTerritories = neighboringTerritories;
     }
-    public void addNeigbor(Territory neighboringTerritory){
-        if (!this.neighboringTerritories.contains(neighboringTerritory))
-          this.neighboringTerritories.add(neighboringTerritory);
+    public void addNeigbor(Territory neighboringTerritory) {
+        if (!this.neighboringTerritories.contains(neighboringTerritory)) {
+            this.neighboringTerritories.add(neighboringTerritory);
+
+        }
     }
-    public static void neighbor(Territory A,Territory B){
-        A.addNeigbor(B);
-        B.addNeigbor(A);
+    public static void neighbor(Territory A,Territory B) {
+        if (!A.isNeighbor(B)) {
+            A.addNeigbor(B);
+            B.addNeigbor(A);
+        }
     }
     public boolean isNeighbor(Territory A){
         if (this.neighboringTerritories.contains(A)) {
@@ -139,14 +147,17 @@ public class Territory implements Cloneable {
             return false;
         }
     }
+
+
+
     public Object clone() throws CloneNotSupportedException {
-        Territory newTerritory = new Territory(defender, armyUnits);
+        Territory newTerritory = new Territory();
         newTerritory.setArmyUnits(new ArmyUnits(this.armyUnits.getNoOfUnits()));
-        ArrayList<Territory> newNeighbours = new ArrayList<>();
-        for (Territory territory : neighboringTerritories) {
-            //newNeighbours.add((Territory) territory.clone());
-        }
-        newTerritory.setNeighboringTerritories(newNeighbours);
+        //ArrayList<Territory> newNeighbours = new ArrayList<>();
+//        for (Territory territory : neighboringTerritories) {
+//            //newNeighbours.add((Territory) territory.clone());
+//        }
+//        newTerritory.setNeighboringTerritories(newNeighbours);
         return newTerritory;
     }
 

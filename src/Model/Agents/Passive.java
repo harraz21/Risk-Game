@@ -4,7 +4,7 @@ import Model.Map.RiskMap;
 import Model.Map.Territory;
 
 public class Passive extends Agent {
-    public void play(RiskMap map){
+    public RiskMap play(RiskMap map){
         if (this.getNoOfUnitsAvaliable()>0){
             int min = 0;
             min = this.getTerritoriesOccuopied().get(0).getArmyUnits().getNoOfUnits();
@@ -19,7 +19,7 @@ public class Passive extends Agent {
             least.addSoldiers(this.getNoOfUnitsAvaliable());
             this.setNoOfUnitsAvaliable(0);
         }
-
+        return null;
     }
 
 

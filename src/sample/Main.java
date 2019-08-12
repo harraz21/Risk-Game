@@ -40,12 +40,14 @@ public class Main extends Application {
         myMap.addTerritory(myTerritoryC);
         Territory myTerritoryD = new Territory(B, new ArmyUnits(5));
         myMap.addTerritory(myTerritoryD);
-        Territory.neighbor(myTerritoryA,myTerritoryB);
-        Territory.neighbor(myTerritoryC,myTerritoryD);
-        Territory.neighbor(myTerritoryB,myTerritoryC);
-        Territory.neighbor(myTerritoryA,myTerritoryD);
 
-       // Territory.neighbor(myTerritoryB,myTerritoryD);
+            Territory.neighbor(myTerritoryA,myTerritoryB);
+            Territory.neighbor(myTerritoryC,myTerritoryD);
+            Territory.neighbor(myTerritoryB,myTerritoryC);
+            Territory.neighbor(myTerritoryA,myTerritoryD);
+
+
+        // Territory.neighbor(myTerritoryB,myTerritoryD);
         //Territory.neighbor(myTerritoryA,myTerritoryC);
 
         myMap.getPlayers().get(0).setNoOfUnitsAvaliable(10);

@@ -57,29 +57,29 @@ public class Agent implements Cloneable {
         System.out.println("updated with "+no);
         this.setNoOfUnitsAvaliable(no);
     }
-    public void play(RiskMap myMap){
+    public RiskMap play(RiskMap myMap){
         try {
-            ((Passive)this).play(myMap);
+           return  ((Passive)this).play(myMap);
 
         }catch (Exception a){
             try {
-                ((Pacifist)this).play(myMap);
+                return ((Pacifist)this).play(myMap);
 
             }catch (Exception b){
                 try {
-                    ((Aggressive)this).play(myMap);
+                    return  ((Aggressive)this).play(myMap);
 
                 }catch (Exception c){
                     try {
-                        ((Pacifist)this).play(myMap);
+                        return ((Human)this).play(myMap);
 
                     }catch (Exception d){
                         try {
-                            ((Pacifist)this).play(myMap);
+                            return ((Greedy)this).play(myMap);
 
                         }catch (Exception e){
                             try {
-                                ((Pacifist)this).play(myMap);
+                                return  ((A_Star)this).play(myMap);
 
                             }catch (Exception f){
                                    f.printStackTrace();
@@ -89,13 +89,27 @@ public class Agent implements Cloneable {
                 }
             }
         }
+        return null;
     }
     public Object clone() throws  CloneNotSupportedException
     {
 
-        Agent newAgent= new Agent();
+        Agent newAgent= null;
+        if (this instanceof Aggressive){
+            newAgent = new Aggressive();
+        }else if (this instanceof Passive){
+            newAgent = new Passive();
+        }else if (this instanceof Pacifist){
+        newAgent = new Pacifist();
+         }else if (this instanceof Human    ){
+            newAgent = new Human();
+        }else if (this instanceof Greedy){
+            newAgent = new Greedy();
+        }else{
+            System.out.println("Something is wrong");
+        }
         newAgent.setNoOfArmyUnits(noOfArmyUnits);
-        newAgent.setNoOfArmyUnits(noOfUnitsAvailable);
+        newAgent.setNoOfUnitsAvaliable(noOfUnitsAvailable);
        // newAgent.setTerritoriesOccuopied(newTerritories);
         return newAgent;
     }

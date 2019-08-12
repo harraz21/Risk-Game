@@ -123,17 +123,16 @@ public class Controller implements Initializable {
         }
         EgyptCities.loadAdjacencyList();
         HashMap<Integer, ArrayList<Integer>> list = EgyptCities.adjacencyList;
+        System.out.println("list is " + list);
         for (int i = 0; i < 26; i++) {
             try {
-
-
-                for (int j :
-                        list.get(i)) {
+                for (int j : list.get(i)) {
                     Territory.neighbor(myMap.getTerritories().get(i), myMap.getTerritories().get(j));
                 }
             }catch (Exception e){
-                //System.out.println("No problem");
+
             }
+
         }
 
         for (Territory x:
@@ -141,7 +140,8 @@ public class Controller implements Initializable {
             x.setDefender(myMap.getPlayers().get( (new Random()).nextInt(2)));
         }
 
-
+        updateIndex();
+        update();
     }
     @FXML
     private Label unitsAvailable;
@@ -156,10 +156,17 @@ public class Controller implements Initializable {
     private Label turns;
 
     public void nextTurn(ActionEvent mouseEvent){
+        System.out.println("herere");
+        RiskMap newMyMap =  myMap.getPlayers().get(turn%2).play(myMap);
+        System.out.println("ffffffherere");
+        if (newMyMap != null){
+            myMap = newMyMap;
 
-        myMap.getPlayers().get(turn%2).play(myMap);
+            System.out.println("Not Null");
+        }
         if (myMap.getPlayers().get(turn%2).getNoOfUnitsAvaliable()>0){
-            System.out.println("Please Place All units");
+            System.out.println("Please Place All units "
+                    +myMap.getPlayers().get(turn%2).getNoOfUnitsAvaliable());
             return;
         }
         turn++;

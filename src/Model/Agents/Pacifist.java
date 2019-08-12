@@ -5,7 +5,7 @@ import Model.Map.Territory;
 
 public class Pacifist extends Agent{
 
-    public void play(RiskMap map){
+    public RiskMap play(RiskMap map){
         if (this.getNoOfUnitsAvaliable()>0){
             int min = 0;
             min = this.getTerritoriesOccuopied().get(0).getArmyUnits().getNoOfUnits();
@@ -39,6 +39,6 @@ public class Pacifist extends Agent{
             if (attack !=null)
                 attack.attack(x.removeArmies(x.getArmyUnits().getNoOfUnits()-1),x.getDefender());
         }
-
+        return null;
     }
 }

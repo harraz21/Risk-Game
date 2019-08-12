@@ -22,15 +22,7 @@ public class GameState implements Cloneable{
         this.currentRiskMap = currentRiskMap;
     }
     public ArrayList<Agent> getAgents(){
-        ArrayList<Agent> agents = new ArrayList<Agent>();
-        for (Territory i: currentRiskMap.getTerritories()) {
-            if(i.getDefender()!=null){
-                if (!agents.contains(i.getDefender())){
-                    agents.add(i.getDefender());
-                }
-            }
-        }
-        return agents;
+        return currentRiskMap.getPlayers();
     }
     public Object clone() throws  CloneNotSupportedException
     {
