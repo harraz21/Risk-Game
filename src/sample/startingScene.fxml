@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StartingSceneController">
+   <children>
+      <Button fx:id="startButton" layoutX="426.0" layoutY="323.0" mnemonicParsing="false" onAction="#startButtonOnAction" prefHeight="25.0" prefWidth="113.0" text="Start">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <ComboBox fx:id="firstAgentComboBox" layoutX="179.0" layoutY="108.0" prefWidth="150.0" promptText="First Agent" visibleRowCount="8" />
+      <ComboBox fx:id="secondAgentComboBox" layoutX="179.0" layoutY="181.0" prefWidth="150.0" promptText="Second Agent" visibleRowCount="8" />
+      <ComboBox fx:id="mapComboBox" layoutX="179.0" layoutY="284.0" prefWidth="150.0" promptText="Egypt" visibleRowCount="2" />
+      <Label layoutX="127.0" layoutY="75.0" prefHeight="17.0" prefWidth="120.0" text="First Agent:" textFill="#1a0ac6" AnchorPane.leftAnchor="127.0">
+         <font>
+            <Font name="Calibri Light Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="134.0" layoutY="151.0" prefHeight="17.0" prefWidth="120.0" text="Second Agent:" textFill="#1a0ac6" AnchorPane.leftAnchor="134.0">
+         <font>
+            <Font name="Calibri Light Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="134.0" layoutY="249.0" prefHeight="17.0" prefWidth="120.0" text="Map:" textFill="#1a0ac6" AnchorPane.leftAnchor="134.0">
+         <font>
+            <Font name="Calibri Light Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="AlertLabel" layoutX="209.0" layoutY="337.0" prefHeight="17.0" prefWidth="120.0" textFill="#1a0ac6">
+         <font>
+            <Font name="Calibri Light Italic" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
