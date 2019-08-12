@@ -15,10 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -167,6 +164,11 @@ public class Controller implements Initializable {
     private Label turns;
 
     public void nextTurn(ActionEvent mouseEvent){
+        if (myMap.isGoal()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Game Ended " , ButtonType.OK);
+            alert.show();
+
+        }
         System.out.println("herere");
         RiskMap newMyMap =  myMap.getPlayers().get(turn%2).play(myMap);
         System.out.println("ffffffherere");
@@ -215,11 +217,21 @@ public class Controller implements Initializable {
         updateColors();
         myMap.print();
     }
+    @FXML
+    private Label player1Terr;
+
+    @FXML
+    private Label player2Terr;
+
     void updateIndex(){
         unitsAvailable.setText(Integer.toString(myMap.getPlayers().get(turn%2)
                 .getNoOfUnitsAvaliable()));
         turns.setText(Integer.toString(turn));
         playerTurn.setText(Integer.toString(turn%2));
+        player1Terr.setText(Integer.toString( myMap.getPlayers().get(0)
+                .getTerritoriesOccuopied().size()));
+        player2Terr.setText(Integer.toString( myMap.getPlayers().get(1)
+                .getTerritoriesOccuopied().size()));
     }
     void updateColors(){
         for (int i = 0; i < 26; i++) {

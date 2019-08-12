@@ -101,22 +101,27 @@ public class Node  {
            // System.out.println(B.getPlayers().size());
             //System.out.println(index + " Started "+ this.getDepth());
             Agent C = B.getPlayers().get(index);
+            int n = 30;
+            while (n>0) {
+                RiskMap myClonedMap = (RiskMap) B.clone();
 
-            for (Territory D:
-                 C.getTerritoriesOccuopied()) {
-                RiskMap myClonedMap =(RiskMap) B.clone();
-                int indexofD = B.getTerritories().indexOf(D);
-               // System.out.println(D);
-                myClonedMap.getTerritories().get(indexofD)
-                        .move(myClonedMap.getTerritories().get(indexofD)
-                                .getNeighboringTerritories().get(
-                                        (new Random().nextInt(myClonedMap.getTerritories().get(indexofD)
-                                                .getNeighboringTerritories().size()))
-                                ));
-                //myClonedMap.print();
-                children.add(new Node(new GameState(myClonedMap),this));
+                for (Territory D :
+                        C.getTerritoriesOccuopied()) {
+                    int indexofD = B.getTerritories().indexOf(D);
+                    // System.out.println(D);
+                    if ((new Random()).nextBoolean())
+                        myClonedMap.getTerritories().get(indexofD)
+                                .move(myClonedMap.getTerritories().get(indexofD)
+                                        .getNeighboringTerritories().get(
+                                                (new Random().nextInt(myClonedMap.getTerritories().get(indexofD)
+                                                        .getNeighboringTerritories().size()))
+                                        ));
+                    //myClonedMap.print();
+                }
+                children.add(new Node(new GameState(myClonedMap), this));
+                n--;
             }
-           // B.print();
+            // B.print();
         }
 
         System.out.println("size of children  " + children.size());

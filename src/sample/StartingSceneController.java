@@ -28,9 +28,9 @@ public class StartingSceneController implements Initializable {
     @FXML
     public Label AlertLabel;
     ObservableList<String> firstAgentList = FXCollections.observableArrayList("Human Agent", "Passive Agent", "Aggressive Agent"
-            , "Pacifist Agent", "Greedy Agent", "A* Agent", "Real time A* Agent", "Minimax Agent");
+            , "Pacifist Agent", "Greedy Agent", "A* Agent", "Real time A* Agent", "Minimax Agent","Dummy Agent");
     ObservableList<String> secondAgentList = FXCollections.observableArrayList("Human Agent", "Passive Agent", "Aggressive Agent"
-            , "Pacifist Agent", "Greedy Agent", "A* Agent", "Real time A* Agent", "Minimax Agent");
+            , "Pacifist Agent", "Greedy Agent", "A* Agent", "Real time A* Agent", "Minimax Agent","Dummy Agent");
     ObservableList<String> mapList = FXCollections.observableArrayList("Egypt", "USA");
 
     @Override
@@ -73,6 +73,9 @@ public class StartingSceneController implements Initializable {
             case "Minimax Agent":
                 Message.Player1 = new Minimax();
                 break;
+            case "Dummy Agent":
+                Message.Player1 = new Dummy();
+                break;
             default:
                 //write your code here
                 break;
@@ -102,6 +105,9 @@ public class StartingSceneController implements Initializable {
                 break;
             case "Minimax Agent":
                 Message.Player2 = new Minimax();
+                break;
+            case "Dummy Agent":
+                Message.Player2 = new Dummy();
                 break;
             default:
                 //write your code here

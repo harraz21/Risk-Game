@@ -19,12 +19,13 @@ public class Minimax  extends Agent{
 
     public  RiskMap play (RiskMap myMap){
         Pair<GameState, Integer> result = minMaxDecision(
-          new GameState(myMap),4,Integer.MIN_VALUE,Integer.MAX_VALUE,true
-        );
+          new GameState(myMap),3,Integer.MIN_VALUE,Integer.MAX_VALUE,true
+        ,myMap.getPlayers().indexOf(this));
 
         return result.getKey().getCurrentRiskMap();
     }
-    public Pair<GameState, Integer> minMaxDecision(GameState position, int depth, int alpha, int beta, boolean maximizingAgent) {
+    public Pair<GameState, Integer> minMaxDecision(GameState position, int depth, int alpha, int beta, boolean maximizingAgent
+    ,int index) {
         if (depth == 0 /**  || game is over**/) {
             Pair<GameState, Integer> pair = new Pair<GameState, Integer>(position,(int)(new Franz_Hahn()).getHeuristic(position));
             return pair;
@@ -32,7 +33,6 @@ public class Minimax  extends Agent{
         Node myNode = new Node(position);
         GameState myGameState = null;
         //fix this laterrr
-        int index = position.getCurrentRiskMap().getPlayers().indexOf(this);
         myNode.generateChildren(((myNode.getDepth()%2)==0) ?
                 myNode.getState().getAgents().get(index) : myNode.getState().getAgents().get(index).getOpponent());
         ArrayList<Node> list = myNode.getChildren();
@@ -41,7 +41,7 @@ public class Minimax  extends Agent{
             int maxEval = Integer.MIN_VALUE;
             for (Node a :list ) {
 
-                Pair<GameState, Integer>  m = minMaxDecision(a.getState(),depth-1,alpha,beta,false);
+                Pair<GameState, Integer>  m = minMaxDecision(a.getState(),depth-1,alpha,beta,false,index);
                 int eval = m.getValue();
                  maxEval = max(maxEval,eval);
                  if (maxEval == eval){
@@ -59,7 +59,7 @@ public class Minimax  extends Agent{
 
              for (Node a :list ) {
 
-                 Pair<GameState, Integer>  m = minMaxDecision(a.getState(),depth-1,alpha,beta,true);
+                 Pair<GameState, Integer>  m = minMaxDecision(a.getState(),depth-1,alpha,beta,true,index);
                  int eval = m.getValue();
 
                  minEval = min(minEval,eval) ;

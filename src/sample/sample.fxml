@@ -36,6 +36,10 @@
             <Label layoutX="981.0" layoutY="14.0" text="Turn" />
             <Label fx:id="turns" layoutX="1143.0" layoutY="14.0" text="0" />
             <Button layoutX="1029.0" layoutY="762.0" mnemonicParsing="false" onAction="#next100Turn" prefHeight="45.0" prefWidth="147.0" text="Next 100 Turns" />
+            <Label layoutX="964.0" layoutY="89.0" text="Player 1 Territories" />
+            <Label fx:id="player1Terr" layoutX="1073.0" layoutY="89.0" text="0" />
+            <Label layoutX="1103.0" layoutY="89.0" text="Player 2 Territories" />
+            <Label fx:id="player2Terr" layoutX="1212.0" layoutY="89.0" text="0" />
          </children>
       </AnchorPane>
    </children>
