@@ -24,7 +24,7 @@
       <AnchorPane minWidth="-Infinity" prefHeight="818.0" prefWidth="1271.0">
          <children>
             <Canvas fx:id="myCanvas" height="740.0" layoutX="23.0" layoutY="22.0" onMousePressed="#onMousePressed" width="914.0" />
-            <Button layoutX="1051.0" layoutY="717.0" mnemonicParsing="false" onAction="#nextTurn" prefHeight="45.0" prefWidth="147.0" text="Next Turn" />
+            <Button layoutX="1029.0" layoutY="700.0" mnemonicParsing="false" onAction="#nextTurn" prefHeight="45.0" prefWidth="147.0" text="Next Turn" />
             <ListView fx:id="cityList" layoutX="950.0" layoutY="114.0" prefHeight="519.0" prefWidth="290.0" />
             <Button layoutX="38.0" layoutY="762.0" mnemonicParsing="false" onAction="#back" prefHeight="45.0" prefWidth="68.0" text="Back" />
             <Label layoutX="981.0" layoutY="50.0" text="Number of Units to Place" />
@@ -35,6 +35,7 @@
             <Label fx:id="playerTurn" layoutX="1143.0" layoutY="33.0" text="0" />
             <Label layoutX="981.0" layoutY="14.0" text="Turn" />
             <Label fx:id="turns" layoutX="1143.0" layoutY="14.0" text="0" />
+            <Button layoutX="1029.0" layoutY="762.0" mnemonicParsing="false" onAction="#next100Turn" prefHeight="45.0" prefWidth="147.0" text="Next 100 Turns" />
          </children>
       </AnchorPane>
    </children>

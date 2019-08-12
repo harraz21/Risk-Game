@@ -27,6 +27,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //System.out.close();
+        System.out.close();;
         launch(args);
         Agent A = new Pacifist();
         Agent B = new Aggressive();

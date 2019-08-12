@@ -35,10 +35,7 @@ public class RiskMap implements Cloneable{
         for (Territory territory : territories) {
             territoryArrayList.add((Territory) territory.clone());
         }
-        for (Territory ll:
-             territoryArrayList) {
-            System.out.println(ll);
-        }
+
         RiskMap newRiskMap = new RiskMap((Agent) Players.get(0).clone(),
                 (Agent)Players.get(1).clone());
 

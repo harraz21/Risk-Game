@@ -1,13 +1,15 @@
 package Model.Agents;
 
-import Model.Agents.Agent;
 import Model.Map.RiskMap;
-import Model.Tree.*;
+import Model.Tree.Franz_Hahn;
+import Model.Tree.GameState;
+import Model.Tree.Node;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 
-public class A_Star extends Agent {
+public class A_Star_Realtime extends Agent {
     int index;
     private class myPair{
 
@@ -23,7 +25,7 @@ public class A_Star extends Agent {
         Node myNode = new Node(new GameState(myMap));
          index = myMap.getPlayers().indexOf(this);
 
-        while (myNode.getDepth() < 15) {
+        while (myNode.getDepth() < 5) {
             System.out.println("Generate Children Started");
             myNode.generateChildren(((myNode.getDepth()%2)==0) ?
                     myNode.getState().getAgents().get(index) : myNode.getState().getAgents().get(index).getOpponent());

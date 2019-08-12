@@ -37,6 +37,7 @@ public class Node  {
 
     public Node(GameState myState) {
         this.state = myState;
+        this.parent = null;
     }
 
 
@@ -59,13 +60,14 @@ public class Node  {
         ArrayList<Node> newChildren = new ArrayList<>();
 
         Agent i = cAgent;
-        int index = state.getAgents().indexOf(i);
+        int index = state.getCurrentRiskMap().getPlayers().indexOf(i);
             if (i == null){
                 return;
             }
+            i.updateUnitsAvaliable();
             int sum = i.getNoOfUnitsAvaliable();
-            long num =  50;
-            System.out.println("Started ++++++++++"+ num);
+            long num =  20;
+            System.out.println(index + " Started ++++++++++ "+ num);
             for (long j = 0; j < num; j++) {
 
 
@@ -88,15 +90,16 @@ public class Node  {
                     x--;
                 }
                 newChildren.add(new Node(newState));
-                System.out.println("placing Size "+ newChildren.size());
+               // System.out.println("placing Size "+ newChildren.size());
             }
 
 
 
         for (Node A:
              newChildren) {
-            System.out.println("ehrehrhe h");
             RiskMap B = (RiskMap)A.getState().getCurrentRiskMap();
+           // System.out.println(B.getPlayers().size());
+            //System.out.println(index + " Started "+ this.getDepth());
             Agent C = B.getPlayers().get(index);
 
             for (Territory D:
@@ -106,9 +109,12 @@ public class Node  {
                // System.out.println(D);
                 myClonedMap.getTerritories().get(indexofD)
                         .move(myClonedMap.getTerritories().get(indexofD)
-                                .getNeighboringTerritories().get(0));
+                                .getNeighboringTerritories().get(
+                                        (new Random().nextInt(myClonedMap.getTerritories().get(indexofD)
+                                                .getNeighboringTerritories().size()))
+                                ));
                 //myClonedMap.print();
-                children.add(new Node(new GameState(myClonedMap)));
+                children.add(new Node(new GameState(myClonedMap),this));
             }
            // B.print();
         }

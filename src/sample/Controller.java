@@ -63,9 +63,19 @@ public class Controller implements Initializable {
                 Agent A  = Message.Player1;
                 Agent B = Message.Player2;
                 myMap = new RiskMap(A,B);
+                place();
                 loadEgypt();
                 Message.once = true;
             }
+        }
+    }
+    void place(){
+        for (int i = 0; i < 20; i++) {
+            myMap.getPlayers().get(0).getTerritoriesOccuopied().get((new Random()
+            .nextInt(myMap.getPlayers().get(0).getTerritoriesOccuopied().size()))).addSoldiers(1);
+            myMap.getPlayers().get(1).getTerritoriesOccuopied().get((new Random()
+                    .nextInt(myMap.getPlayers().get(1).getTerritoriesOccuopied().size()))).addSoldiers(1);
+
         }
     }
     public void loadEgypt(){
@@ -178,6 +188,13 @@ public class Controller implements Initializable {
         source = destination= null;
 
     }
+    @FXML
+    void next100Turn(ActionEvent event) {
+        for (int i = 0; i < 100; i++) {
+            nextTurn(event);
+        }
+    }
+
     public void update(){
         if (myMap.isGoal()){
             System.out.println("GOAL Reached");

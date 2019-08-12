@@ -19,6 +19,10 @@ public class Agent implements Cloneable {
         return territoriesOccuopied;
     }
 
+    public Agent getOpponent() {
+        return opponent;
+    }
+
     public void setOpponent(Agent opponent) {
         this.opponent = opponent;
     }
@@ -82,7 +86,12 @@ public class Agent implements Cloneable {
                                 return  ((A_Star)this).play(myMap);
 
                             }catch (Exception f){
-                                   f.printStackTrace();
+                                try {
+                                    return  ((A_Star_Realtime)this).play(myMap);
+
+                                }catch (Exception g){
+                                    g.printStackTrace();
+                                }
                             }
                         }
                     }
@@ -105,6 +114,10 @@ public class Agent implements Cloneable {
             newAgent = new Human();
         }else if (this instanceof Greedy){
             newAgent = new Greedy();
+        }else if (this instanceof A_Star){
+            newAgent = new A_Star();
+        }else if (this instanceof A_Star_Realtime){
+            newAgent = new A_Star_Realtime();
         }else{
             System.out.println("Something is wrong");
         }

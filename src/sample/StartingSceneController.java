@@ -65,10 +65,10 @@ public class StartingSceneController implements Initializable {
                 Message.Player1 = new Greedy();
                 break;
             case "A* Agent":
-                //write your code here
+                Message.Player1 = new A_Star();
                 break;
             case "Real time A* Agent":
-                //write your code here
+                Message.Player1 = new A_Star();
                 break;
             case "Minimax Agent":
                 //write your code here
@@ -95,7 +95,7 @@ public class StartingSceneController implements Initializable {
                 Message.Player2 = new Greedy();
                 break;
             case "A* Agent":
-                //write your code here
+                Message.Player2 = new A_Star();
                 break;
             case "Real time A* Agent":
                 //write your code here
