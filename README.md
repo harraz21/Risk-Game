@@ -11,3 +11,5 @@ The game has several AI agnets and NON AI agents.
 
 3-Minimax search agent.
 
+![](https://github.com/harraz21/Risk-Game/blob/master/res/Capture.PNG)
+
